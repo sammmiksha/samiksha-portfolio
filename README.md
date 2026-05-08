@@ -20,33 +20,6 @@ The website highlights real deployed projects including AI-powered platforms, st
 
 ---
 
-## Featured Projects
-
-### ✦ EduShield
-AI-powered academic integrity platform with:
-- AI-generated content detection
-- Plagiarism analysis
-- Role-based authentication
-- AWS S3 integration
-- FastAPI backend architecture
-
-### ✦ StockAI
-Real-time stock analysis platform featuring:
-- RSI / EMA / MACD indicators
-- AI-driven signals
-- Firebase deployment
-- FastAPI APIs
-- Financial data visualization
-
-### ✦ SevaSetu
-Volunteer and help-matching platform with:
-- Authentication workflows
-- User role systems
-- Responsive frontend
-- Firebase hosting
-
----
-
 ## Tech Stack
 
 ### Frontend
