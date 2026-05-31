@@ -1,4 +1,4 @@
-# ✦ Samiksha Patil — Developer Portfolio
+#  Samiksha Patil — Developer Portfolio
 
 Personal portfolio website showcasing my projects, technical skills, and work in full-stack development, AI integration, and cloud-based systems.
 
