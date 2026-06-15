@@ -1,65 +1,138 @@
-#  Samiksha Patil — Developer Portfolio
+# Samiksha Patil — Developer Portfolio
 
-Personal portfolio website showcasing my projects, technical skills, and work in full-stack development, AI integration, and cloud-based systems.
+> A handcrafted, journal-inspired developer portfolio built to tell the story behind the code.
 
-🌐 Live Website: https://samiksha-portfolio.web.app/
-
----
-
-## About
-
-This portfolio was built to present my work, projects, and technical journey as a BSc Information Technology student focused on:
-
-- Full-Stack Development
-- Artificial Intelligence & Machine Learning
-- Cloud Infrastructure
-- Cybersecurity Systems
-- Backend Engineering
-
-The website highlights real deployed projects including AI-powered platforms, stock analysis systems, and volunteer-matching applications.
+**Live:** [sammmiksha.github.io/samiksha-portfolio](https://sammmiksha.github.io/samiksha-portfolio/)
+&nbsp;·&nbsp; **GitHub:** [github.com/sammmiksha](https://github.com/sammmiksha)
+&nbsp;·&nbsp; **Email:** patilsamiksha179@gmail.com
 
 ---
 
-## Tech Stack
+## Overview
 
-### Frontend
-- HTML5
-- CSS3
-- JavaScript
-- Responsive Design
+This portfolio is designed as a **Developer Journal** — not a template, but a scrapbook-inspired experience that blends storytelling with technical depth. Every section documents the thinking, engineering, and growth behind the work.
 
-### Backend & APIs
-- FastAPI
-- PostgreSQL
-- REST APIs
-
-### AI / ML
-- Scikit-learn
-- HuggingFace
-- AI Content Detection
-
-### Cloud & Deployment
-- Firebase Hosting
-- AWS S3
-- Render
-- GitHub
+Built by a BSc IT graduate from Mumbai University, this site reflects hands-on experience in full-stack development, backend engineering, and AI-integrated systems.
 
 ---
 
 ## Features
 
-- Fully responsive design
-- Smooth animations & transitions
-- Modern UI/UX
-- Firebase deployment
-- Optimized single-page structure
-- Interactive project showcase
+### Interactive Project Journal
+Each project is presented as a multi-page notebook entry containing:
+- Project story and context
+- Engineering decisions and architecture
+- Challenges faced and lessons learned
+- Tech stack breakdown
+
+### Project Showcase
+
+| Project | Description |
+|---|---|
+| **EduShield** | AI-powered academic integrity platform with plagiarism and AI-content detection |
+| **StockAI** | Real-time stock market analysis platform with financial API integrations |
+| **NoteBloom** | Browser-based study notebook — CS50x final project, zero dependencies |
+| **SevaSetu v2** | Volunteer and resource management platform built for Hack@Skill |
+
+### Developer Timeline
+A visual journey through:
+- BSc Information Technology at Mumbai University
+- EduShield development
+- CS50x (Harvard University)
+- Hack@Skill — Google Solution Challenge
+- Open source contributions
+- NLP Engineering and LLM learning path
+- Google ML Crash Course
+
+### Responsive Design
+Optimized for desktop, tablet, and mobile.
+
+### Custom Design System
+- Warm lotus-inspired color palette (`#20280B` Pine Tree → `#DEC59E` Brandy)
+- Scrapbook and storybook aesthetic
+- Custom SVG illustrations and animated avatar
+- Interactive page transitions
+- Studio Ghibli-inspired color harmony
+
+---
+
+## Tech Stack
+
+**Frontend**
+- HTML5, Tailwind CSS, JavaScript
+
+**Backend Experience**
+- FastAPI, REST APIs, JWT Authentication
+
+**Databases**
+- PostgreSQL, Firebase
+
+**Cloud & Deployment**
+- AWS S3, Render, GitHub Pages, Vercel
+
+**AI & Machine Learning**
+- Scikit-learn, NLP (in progress), AI content detection, plagiarism detection systems
+
+---
+
+## Featured Project — EduShield
+
+EduShield is an AI-powered academic integrity platform built to help educators evaluate student submissions fairly and efficiently.
+
+**Core features:**
+- AI-generated content detection
+- Plagiarism analysis
+- Assignment management with classroom access codes
+- Separate dashboards for faculty and students
+- AWS S3 file storage and PostgreSQL database integration
+
+**Repo:** [github.com/sammmiksha](https://github.com/sammmiksha)
+
+---
+
+## Local Development
+
+Clone the repository and open `index.html` directly in your browser — no build step required.
+
+```bash
+git clone https://github.com/sammmiksha/samiksha-portfolio.git
+cd samiksha-portfolio
+open index.html
+```
 
 ---
 
 ## Deployment
 
-Hosted using Firebase Hosting.
+Hosted on **GitHub Pages**, auto-deployed from the `main` branch.
 
 ```bash
-firebase deploy
+git add .
+git commit -m "Update portfolio"
+git push origin main
+```
+
+GitHub Pages will rebuild and publish automatically within a few seconds.
+
+---
+
+## About Me
+
+I'm a full-stack developer with a focus on backend engineering and AI-integrated systems. I enjoy building software that solves real problems cleanly — with well-designed APIs, thoughtful data models, and a genuine understanding of the tools involved.
+
+Currently deepening my expertise in NLP Engineering and Large Language Models.
+
+**Languages:** English · Hindi · Marathi
+**Location:** Mumbai, India
+
+---
+
+## Connect
+
+- GitHub: [github.com/sammmiksha](https://github.com/sammmiksha)
+- LinkedIn: [linkedin.com/in/sammmikshapatil](https://linkedin.com/in/sammmikshapatil)
+- Email: patilsamiksha179@gmail.com
+
+---
+
+*Built with curiosity, consistency, and a love for meaningful software.*
