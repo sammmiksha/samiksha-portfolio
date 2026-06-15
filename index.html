@@ -1,1658 +1,2029 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8">
-  <title>Samiksha Patil — Portfolio</title>
+  <title>Samiksha Patil — Software Engineer Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Portfolio of Samiksha Patil, a Full Stack Developer, Backend Engineer, and AI Systems Builder. Building production-ready web apps with React, FastAPI, PostgreSQL & AI integrations.">
+
+  <!-- Google Fonts: Playfair Display (Headings), Inter (Body), Caveat (Handwritten accents) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;900&family=Gowun+Batang:wght@400;700&family=DM+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;700&display=swap"
     rel="stylesheet">
+
+  <!-- Tailwind CSS v3 CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'pine-tree': '#20280B',
+            'kombu-green': '#33432B',
+            'dingley': '#6A784D',
+            'brandy': '#DEC59E',
+            'pale-copper': '#C4866D',
+            'paper-bg': '#FCF9F2',
+            'paper-dark': '#F4EFE6',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+            hand: ['Caveat', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Core Styles & Animations -->
   <style>
-    :root {
-      --blush: #F3CCDE;
-      --lilac: #D6A8C4;
-      --mauve: #BA88AE;
-      --plum: #9E6899;
-      --deep: #5B3765;
-      --white: #FDF8FC;
-      --soft-bg: #FAF0F6;
-      --ink: #2D1B36;
-      --ink-soft: #6B4C7A;
-      --star: #E8C4F0;
-    }
-
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: var(--soft-bg);
-      color: var(--ink);
-      overflow-x: hidden;
-      cursor: default;
-    }
-
-    /* ── CURSOR — subtle dot only ── */
-    .cursor-dot {
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
       width: 8px;
-      height: 8px;
-      background: var(--plum);
-      border-radius: 50%;
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width 0.2s, height 0.2s, background 0.2s;
     }
 
-    body.cursor-hover .cursor-dot {
-      width: 16px;
-      height: 16px;
-      background: var(--lilac);
+    ::-webkit-scrollbar-track {
+      background: #FCF9F2;
     }
 
-    /* ── FLOATING STARS (BG DECO) ── */
-    .bg-stars {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+    ::-webkit-scrollbar-thumb {
+      background: #6A784D;
+      border-radius: 4px;
     }
 
-    .bg-star {
-      position: absolute;
-      color: var(--star);
-      animation: float-star linear infinite;
-      opacity: 0.45;
-      user-select: none;
-      font-size: 13px;
+    ::-webkit-scrollbar-thumb:hover {
+      background: #33432B;
     }
 
-    @keyframes float-star {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-
-      10% {
-        opacity: 0.45;
-      }
-
-      90% {
-        opacity: 0.45;
-      }
-
-      100% {
-        transform: translateY(-10vh) rotate(360deg);
-        opacity: 0;
-      }
+    /* Paper Grid Pattern Background */
+    .bg-grid-paper {
+      background-color: #FCF9F2;
+      background-image:
+        linear-gradient(to right, rgba(106, 120, 77, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(106, 120, 77, 0.05) 1px, transparent 1px);
+      background-size: 24px 24px;
     }
 
-    /* ── NAVBAR ── */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 200;
-      padding: 18px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(253, 248, 252, 0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(186, 136, 174, 0.2);
+    /* 3D Book Transforms */
+    .perspective-1500 {
+      perspective: 1500px;
     }
 
-    .nav-logo {
-      font-family: 'Gowun Batang', serif;
-      font-size: 20px;
+    .transform-style-3d {
+      transform-style: preserve-3d;
+    }
+
+    .backface-hidden {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .rotateY-180 {
+      transform: rotateY(180deg);
+    }
+
+    .transform-origin-left {
+      transform-origin: left center;
+    }
+
+    /* Active State for Staggered Tabs */
+    .active-tab {
+      background-color: #FCF9F2 !important;
+      border-bottom-color: #FCF9F2 !important;
+      transform: translateY(0) !important;
       font-weight: 700;
-      color: var(--deep);
-      letter-spacing: -0.5px;
+      color: #20280B !important;
+      z-index: 40 !important;
     }
 
-    .nav-logo span {
-      color: var(--plum);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      transition: color 0.2s;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--lilac);
-      border-radius: 2px;
-      transform: scaleX(0);
-      transition: transform 0.25s;
-    }
-
-    .nav-links a:hover {
-      color: var(--deep);
-    }
-
-    .nav-links a:hover::after {
-      transform: scaleX(1);
-    }
-
-    .nav-hire {
-      background: linear-gradient(135deg, var(--plum), var(--deep));
-      color: white !important;
-      padding: 9px 20px;
-      border-radius: 100px;
-      font-size: 13px !important;
-      box-shadow: 0 4px 15px rgba(91, 55, 101, 0.3);
-    }
-
-    .nav-hire::after {
-      display: none !important;
-    }
-
-    .nav-hire:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-    }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      padding: 120px 6% 80px;
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      align-items: center;
-      gap: 60px;
-      position: relative;
-      background:
-        radial-gradient(ellipse 60% 50% at 80% 50%, rgba(243, 204, 222, 0.45) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 10% 80%, rgba(214, 168, 196, 0.3) 0%, transparent 60%),
-        var(--soft-bg);
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: white;
-      border: 1.5px solid var(--blush);
-      padding: 7px 16px;
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--plum);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      box-shadow: 0 4px 12px rgba(186, 136, 174, 0.15);
-      animation: fadeUp 0.6s ease both;
-    }
-
-    .live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #5CB87A;
-      box-shadow: 0 0 0 3px rgba(92, 184, 122, 0.25);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
+    /* Floating micro-animations */
+    @keyframes float {
 
       0%,
       100% {
-        opacity: 1
+        transform: translateY(0px) rotate(0deg);
       }
 
       50% {
-        opacity: 0.4
+        transform: translateY(-8px) rotate(0.5deg);
       }
     }
 
-    .hero-name {
-      font-family: 'Gowun Batang', serif;
-      font-size: clamp(40px, 5.5vw, 72px);
-      line-height: 1.05;
-      letter-spacing: -2px;
-      color: var(--ink);
-      margin-bottom: 20px;
-      animation: fadeUp 0.7s ease 0.1s both;
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
     }
 
-    .hero-name em {
-      font-style: italic;
-      background: linear-gradient(135deg, var(--plum), var(--mauve));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-
-    .hero-desc {
-      font-size: 15px;
-      color: var(--ink-soft);
-      line-height: 1.85;
-      max-width: 480px;
-      margin-bottom: 40px;
-      font-weight: 400;
-      animation: fadeUp 0.7s ease 0.18s both;
-    }
-
-    .hero-vibes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 36px;
-      animation: fadeUp 0.7s ease 0.32s both;
-    }
-
-    .vibe-tag {
-      padding: 6px 14px;
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 700;
-      background: white;
-      border: 1.5px solid var(--blush);
-      color: var(--ink-soft);
-    }
-
-    .vibe-tag.purple {
-      background: var(--blush);
-      border-color: var(--blush);
-      color: var(--deep);
-    }
-
-    .vibe-tag.mauve {
-      background: rgba(186, 136, 174, 0.15);
-      border-color: var(--mauve);
-      color: var(--plum);
-    }
-
-    .hero-btns {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      animation: fadeUp 0.7s ease 0.38s both;
-    }
-
-    .btn-main {
-      background: linear-gradient(135deg, var(--plum) 0%, var(--deep) 100%);
-      color: white;
-      padding: 14px 28px;
-      border-radius: 100px;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-      box-shadow: 0 8px 24px rgba(91, 55, 101, 0.35);
-      transition: all 0.3s;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-main:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 30px rgba(91, 55, 101, 0.4);
-    }
-
-    .btn-ghost {
-      border: 2px solid var(--lilac);
-      color: var(--deep);
-      padding: 14px 28px;
-      border-radius: 100px;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-      transition: all 0.3s;
-    }
-
-    .btn-ghost:hover {
-      background: var(--blush);
-      border-color: var(--blush);
-      transform: translateY(-2px);
-    }
-
-    /* Hero right — bubble card collage */
-    .hero-right {
-      position: relative;
-      height: 460px;
-      animation: fadeUp 0.8s ease 0.2s both;
-    }
-
-    .bubble-card {
+    /* Page styles */
+    .sheet {
       position: absolute;
-      background: white;
-      border-radius: 24px;
-      padding: 22px 26px;
-      box-shadow: 0 12px 40px rgba(158, 104, 153, 0.15);
-      border: 1.5px solid rgba(243, 204, 222, 0.6);
-      transition: transform 0.35s;
-    }
-
-    .bubble-card:hover {
-      transform: translateY(-6px) rotate(0deg) !important;
-    }
-
-    .bc-1 {
-      top: 0;
-      left: 0;
-      width: 200px;
-      transform: rotate(-3deg);
-    }
-
-    .bc-2 {
-      top: 30px;
-      right: 0;
-      width: 210px;
-      transform: rotate(2.5deg);
-      background: linear-gradient(135deg, #F3CCDE, #D6A8C4);
-    }
-
-    .bc-3 {
-      bottom: 60px;
-      left: 20px;
-      width: 230px;
-      transform: rotate(1.5deg);
-    }
-
-    .bc-4 {
-      bottom: 10px;
-      right: 10px;
-      width: 180px;
-      transform: rotate(-2deg);
-      background: linear-gradient(135deg, var(--deep), var(--plum));
-      color: white;
-    }
-
-    .bc-emoji {
-      font-size: 28px;
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    .bc-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      opacity: 0.6;
-      margin-bottom: 4px;
-      font-family: 'DM Mono', monospace;
-    }
-
-    .bc-val {
-      font-family: 'Gowun Batang', serif;
-      font-size: 26px;
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    .bc-sub {
-      font-size: 12px;
-      opacity: 0.7;
-      margin-top: 4px;
-      font-weight: 600;
-    }
-
-    .float-star-deco {
-      position: absolute;
-      font-size: 22px;
-      animation: wobble 3s ease-in-out infinite;
-      user-select: none;
-      color: var(--lilac);
-    }
-
-    @keyframes wobble {
-
-      0%,
-      100% {
-        transform: rotate(-10deg)
-      }
-
-      50% {
-        transform: rotate(10deg)
-      }
-    }
-
-    /* ── SECTIONS SHARED ── */
-    section {
-      padding: 100px 6%;
-      position: relative;
-      z-index: 1;
-    }
-
-    .sec-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--plum);
-      margin-bottom: 16px;
-    }
-
-    .sec-eyebrow::before {
-      content: '✦';
-      font-size: 10px;
-    }
-
-    .sec-title {
-      font-family: 'Gowun Batang', serif;
-      font-size: clamp(30px, 4vw, 50px);
-      line-height: 1.1;
-      letter-spacing: -1px;
-      color: var(--ink);
-      margin-bottom: 16px;
-    }
-
-    .sec-title em {
-      font-style: italic;
-      color: var(--plum);
-    }
-
-    /* ── ABOUT ── */
-    #about {
-      background: white;
-      border-top: 1px solid rgba(214, 168, 196, 0.2);
-      border-bottom: 1px solid rgba(214, 168, 196, 0.2);
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .about-photo-card {
-      background: linear-gradient(145deg, var(--blush) 0%, var(--lilac) 100%);
-      border-radius: 30px;
-      padding: 32px;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(158, 104, 153, 0.2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .about-photo-card::before {
-      content: '';
-      position: absolute;
-      top: -40px;
-      right: -40px;
-      width: 120px;
-      height: 120px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-    }
-
-    .about-avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--plum), var(--deep));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 42px;
-      margin: 0 auto 16px;
-      box-shadow: 0 8px 20px rgba(91, 55, 101, 0.3);
-    }
-
-    .about-name-card {
-      font-family: 'Gowun Batang', serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--deep);
-      margin-bottom: 4px;
-    }
-
-    .about-loc {
-      font-size: 13px;
-      color: var(--ink-soft);
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    .about-stat-row {
-      display: flex;
-      justify-content: space-around;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 16px;
-      padding: 16px;
-    }
-
-    .about-stat {
-      text-align: center;
-    }
-
-    .about-stat-num {
-      font-family: 'Gowun Batang', serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--deep);
-    }
-
-    .about-stat-lbl {
-      font-size: 11px;
-      color: var(--ink-soft);
-      font-weight: 700;
-    }
-
-    .about-right {
-      padding-top: 8px;
-    }
-
-    .about-desc {
-      font-size: 16px;
-      line-height: 1.9;
-      color: var(--ink-soft);
-      margin-bottom: 32px;
-      font-weight: 400;
-    }
-
-    .personal-section {
-      background: var(--soft-bg);
-      border-radius: 20px;
-      padding: 24px;
-      border: 1.5px solid rgba(214, 168, 196, 0.3);
-      margin-top: 28px;
-    }
-
-    .personal-title {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--plum);
-      margin-bottom: 14px;
-      font-family: 'DM Mono', monospace;
-    }
-
-    .personal-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .p-tag {
-      padding: 7px 14px;
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 600;
-      background: white;
-      border: 1.5px solid rgba(214, 168, 196, 0.4);
-      color: var(--ink-soft);
-      transition: all 0.25s;
-    }
-
-    .p-tag:hover {
-      background: var(--blush);
-      border-color: var(--blush);
-      color: var(--deep);
-      transform: scale(1.04);
-    }
-
-    /* ── SKILLS ── */
-    #skills {
-      background: var(--soft-bg);
-    }
-
-    .skills-intro {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .skill-category {
-      margin-bottom: 36px;
-    }
-
-    .skill-cat-name {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--plum);
-      font-family: 'DM Mono', monospace;
-      margin-bottom: 14px;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .s-tag {
-      padding: 8px 16px;
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 700;
-      background: white;
-      border: 1.5px solid rgba(186, 136, 174, 0.25);
-      color: var(--ink-soft);
-      transition: all 0.25s;
-      box-shadow: 0 2px 8px rgba(158, 104, 153, 0.08);
-    }
-
-    .s-tag:hover {
-      background: var(--deep);
-      color: white;
-      transform: translateY(-3px) scale(1.04);
-      box-shadow: 0 8px 20px rgba(91, 55, 101, 0.25);
-    }
-
-    .bar-item {
-      margin-bottom: 24px;
-    }
-
-    .bar-top {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 10px;
-    }
-
-    .bar-pct {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: var(--plum);
-    }
-
-    .bar-track {
-      height: 8px;
-      background: rgba(186, 136, 174, 0.2);
-      border-radius: 100px;
-      overflow: hidden;
-    }
-
-    .bar-fill {
+      width: 50%;
       height: 100%;
-      border-radius: 100px;
-      background: linear-gradient(90deg, var(--lilac), var(--plum));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .bar-fill.go {
-      transform: scaleX(1);
-    }
-
-    /* ── PROJECTS ── */
-    #projects {
-      background: linear-gradient(160deg, var(--deep) 0%, #3A2048 100%);
-      color: white;
-    }
-
-    #projects .sec-eyebrow {
-      color: var(--blush);
-    }
-
-    #projects .sec-title {
-      color: white;
-    }
-
-    #projects .sec-title em {
-      color: var(--blush);
-    }
-
-    .proj-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 60px;
-    }
-
-    .proj-card {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 28px;
-      padding: 36px;
-      transition: all 0.35s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .proj-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
       right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--lilac), var(--blush));
-      transform: scaleX(0);
-      transition: transform 0.4s;
+      transform-origin: left center;
+      transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+      transform-style: preserve-3d;
     }
 
-    .proj-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .proj-card:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-5px);
-    }
-
-    .proj-card.featured {
-      grid-column: span 2;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .proj-card.featured::before {
-      background: linear-gradient(90deg, var(--blush), var(--lilac));
-    }
-
-    .proj-num {
-      font-family: 'Gowun Batang', serif;
-      font-size: 72px;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.05);
-      line-height: 1;
-      margin-bottom: -10px;
-      display: block;
-    }
-
-    .proj-name {
-      font-family: 'Gowun Batang', serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 12px;
-      letter-spacing: -0.3px;
-    }
-
-    .proj-desc {
-      font-size: 14px;
-      line-height: 1.8;
-      color: rgba(255, 255, 255, 0.55);
-      margin-bottom: 24px;
-    }
-
-    .proj-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-bottom: 24px;
-    }
-
-    .proj-tag {
-      padding: 4px 12px;
-      border-radius: 100px;
-      font-size: 11px;
-      font-family: 'DM Mono', monospace;
-      letter-spacing: 0.04em;
-      background: rgba(214, 168, 196, 0.15);
-      color: rgba(243, 204, 222, 0.8);
-      border: 1px solid rgba(214, 168, 196, 0.2);
-    }
-
-    .proj-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--blush);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      transition: gap 0.25s;
-    }
-
-    .proj-link:hover {
-      gap: 12px;
-    }
-
-    .proj-live-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(92, 184, 122, 0.15);
-      border: 1px solid rgba(92, 184, 122, 0.3);
-      color: #7DCCA0;
-      padding: 5px 12px;
-      border-radius: 100px;
-      font-size: 11px;
-      font-weight: 700;
-      font-family: 'DM Mono', monospace;
-      margin-bottom: 14px;
-    }
-
-    .proj-features {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 18px;
-      padding: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .proj-feat-title {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.3);
-      font-family: 'DM Mono', monospace;
-      margin-bottom: 14px;
-    }
-
-    .proj-feat-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.6);
-      margin-bottom: 10px;
-    }
-
-    .feat-check {
-      color: var(--blush);
-      font-size: 14px;
-    }
-
-    /* ── EDUCATION ── */
-    #education {
-      background: white;
-      border-top: 1px solid rgba(214, 168, 196, 0.2);
-    }
-
-    .edu-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.8fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .edu-card {
-      background: linear-gradient(145deg, var(--soft-bg), var(--blush));
-      border-radius: 28px;
-      padding: 36px;
-      border: 1.5px solid rgba(214, 168, 196, 0.3);
-      box-shadow: 0 20px 50px rgba(158, 104, 153, 0.12);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .edu-card::after {
-      content: '✦';
-      position: absolute;
-      bottom: 16px;
-      right: 24px;
-      font-size: 80px;
-      color: rgba(158, 104, 153, 0.08);
-      line-height: 1;
-    }
-
-    .edu-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--deep);
-      color: white;
-      padding: 6px 14px;
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    .edu-deg {
-      font-family: 'Gowun Batang', serif;
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .edu-school {
-      font-size: 13px;
-      color: var(--ink-soft);
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
-
-    .cgpa-row {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      margin-bottom: 4px;
-    }
-
-    .cgpa-big {
-      font-family: 'Gowun Batang', serif;
-      font-size: 48px;
-      font-weight: 700;
-      color: var(--deep);
-      line-height: 1;
-    }
-
-    .cgpa-denom {
-      font-size: 22px;
-      color: var(--ink-soft);
-    }
-
-    .cgpa-lbl {
-      font-size: 12px;
-      color: var(--ink-soft);
-      font-weight: 600;
-    }
-
-    .edu-right {
-      padding-top: 12px;
-    }
-
-    .edu-highlights {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .edu-hl {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      background: var(--soft-bg);
-      border-radius: 16px;
-      padding: 20px;
-      border: 1.5px solid rgba(214, 168, 196, 0.2);
-      transition: all 0.25s;
-    }
-
-    .edu-hl:hover {
-      transform: translateX(6px);
-      border-color: var(--lilac);
-    }
-
-    .edu-hl-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-
-    .ic-purple {
-      background: var(--blush);
-    }
-
-    .ic-green {
-      background: rgba(168, 230, 176, 0.2);
-    }
-
-    .ic-indigo {
-      background: rgba(158, 104, 153, 0.1);
-    }
-
-    .edu-hl-body h4 {
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 3px;
-    }
-
-    .edu-hl-body p {
-      font-size: 13px;
-      color: var(--ink-soft);
-      line-height: 1.5;
-    }
-
-    .ongoing-card {
-      background: linear-gradient(135deg, var(--deep), #3A2048);
-      border-radius: 20px;
-      padding: 24px;
-      margin-top: 20px;
-      color: white;
-    }
-
-    .ongoing-label {
-      font-size: 11px;
-      font-family: 'DM Mono', monospace;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--blush);
-      margin-bottom: 8px;
-    }
-
-    .ongoing-name {
-      font-family: 'Gowun Batang', serif;
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .ongoing-desc {
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.6);
-      line-height: 1.6;
-    }
-
-    /* ── CONTACT ── */
-    #contact {
-      background: var(--soft-bg);
-      border-top: 1px solid rgba(214, 168, 196, 0.2);
-    }
-
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 48px;
-      max-width: 640px;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 32px;
-    }
-
-    .c-link {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 18px 22px;
-      border-radius: 18px;
-      background: white;
-      border: 1.5px solid rgba(214, 168, 196, 0.3);
-      text-decoration: none;
-      color: var(--ink);
-      font-weight: 600;
-      font-size: 14px;
-      transition: all 0.3s;
-      box-shadow: 0 4px 14px rgba(158, 104, 153, 0.07);
-    }
-
-    .c-link:hover {
-      background: linear-gradient(135deg, var(--plum), var(--deep));
-      color: white;
-      border-color: transparent;
-      transform: translateX(6px);
-      box-shadow: 0 10px 28px rgba(91, 55, 101, 0.25);
-    }
-
-    .c-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: var(--soft-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-      transition: background 0.3s;
-    }
-
-    .c-link:hover .c-icon {
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--deep);
-      color: rgba(255, 255, 255, 0.5);
-      padding: 36px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      font-size: 13px;
-    }
-
-    .footer-logo {
-      font-family: 'Gowun Batang', serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: white;
-    }
-
-    .footer-logo span {
-      color: var(--blush);
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(28px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
+    /* Reveal Animations on Scroll */
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    .reveal.vis {
+    .reveal.active {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 100px;
+    @keyframes pulse-circle {
+
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(216, 176, 140, 0.4);
       }
 
-      .hero-right {
-        display: none;
+      50% {
+        transform: scale(1.15);
+        box-shadow: 0 0 0 6px rgba(216, 176, 140, 0);
       }
+    }
 
-      .about-grid,
-      .skills-intro,
-      .edu-layout {
-        grid-template-columns: 1fr;
-        gap: 50px;
-      }
-
-      .proj-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .proj-card.featured {
-        grid-column: span 1;
-        grid-template-columns: 1fr;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      footer {
-        flex-direction: column;
-        text-align: center;
-      }
+    .animate-pulse-circle {
+      animation: pulse-circle 2s infinite;
     }
   </style>
 </head>
 
-<body>
-
-  <div class="cursor-dot" id="dot"></div>
-
-  <!-- Floating BG stars -->
-  <div class="bg-stars" id="bgStars"></div>
+<body
+  class="bg-grid-paper text-pine-tree font-sans selection:bg-brandy selection:text-pine-tree overflow-x-hidden min-h-screen flex flex-col">
 
   <!-- NAVBAR -->
-  <nav>
-    <div class="nav-logo">samiksha<span> ✦</span></div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#education">Education</a></li>
-    </ul>
+  <nav
+    class="sticky top-0 z-50 w-full bg-paper-bg/90 backdrop-blur-md border-b border-dingley/20 px-6 py-4 transition-all duration-300">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <a href="#home"
+        class="font-serif text-2xl font-bold tracking-tight text-pine-tree hover:text-dingley transition-colors duration-200">
+        samiksha<span class="text-pale-copper">.patil</span><span
+          class="text-dingley font-sans font-normal ml-1 text-base">✦</span>
+      </a>
+
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#about"
+          class="text-sm font-semibold tracking-wide text-kombu-green hover:text-pale-copper transition-colors duration-200 relative group py-1">
+          About
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-pale-copper transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#technologies"
+          class="text-sm font-semibold tracking-wide text-kombu-green hover:text-pale-copper transition-colors duration-200 relative group py-1">
+          Core Tech
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-pale-copper transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#tech-stack"
+          class="text-sm font-semibold tracking-wide text-kombu-green hover:text-pale-copper transition-colors duration-200 relative group py-1">
+          Full Stack
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-pale-copper transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#project-journal"
+          class="text-sm font-semibold tracking-wide text-kombu-green hover:text-pale-copper transition-colors duration-200 relative group py-1">
+          Project Journal
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-pale-copper transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#timeline"
+          class="text-sm font-semibold tracking-wide text-kombu-green hover:text-pale-copper transition-colors duration-200 relative group py-1">
+          Timeline
+          <span
+            class="absolute bottom-0 left-0 w-0 h-0.5 bg-pale-copper transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#contact"
+          class="text-sm font-semibold tracking-wide text-kombu-green hover:text-pale-copper transition-colors duration-200 relative group group-hover:underline py-1">
+          Contact
+        </a>
+      </div>
+
+      <!-- Mobile Nav Toggle -->
+      <button id="mobile-menu-btn" class="md:hidden text-kombu-green focus:outline-none p-1"
+        aria-label="Toggle Navigation Menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu"
+      class="hidden md:hidden w-full bg-paper-bg/95 border-b border-dingley/20 px-6 py-4 flex flex-col space-y-4 mt-3">
+      <a href="#about"
+        class="text-sm font-semibold tracking-wide text-kombu-green hover:text-pale-copper py-1">About</a>
+      <a href="#technologies"
+        class="text-sm font-semibold tracking-wide text-kombu-green hover:text-pale-copper py-1">Core Tech</a>
+      <a href="#tech-stack"
+        class="text-sm font-semibold tracking-wide text-kombu-green hover:text-pale-copper py-1">Full Stack</a>
+      <a href="#project-journal"
+        class="text-sm font-semibold tracking-wide text-kombu-green hover:text-pale-copper py-1">Project Journal</a>
+      <a href="#timeline"
+        class="text-sm font-semibold tracking-wide text-kombu-green hover:text-pale-copper py-1">Timeline</a>
+      <a href="#contact"
+        class="text-sm font-semibold tracking-wide text-kombu-green hover:text-pale-copper py-1">Contact</a>
+    </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-left">
-      <div class="hero-tag"><span class="live-dot"></span> Open to Internships &amp; Collabs</div>
-      <h1 class="hero-name">Samiksha Patil</h1>
-      <p class="hero-desc">
-        Building production-ready web apps with React, FastAPI &amp; PostgreSQL —
-        with AI-driven features woven into everything I make. Based in Mumbai, India.
+  <!-- HERO SECTION -->
+  <header id="home"
+    class="relative max-w-6xl mx-auto px-6 py-12 md:py-24 grid grid-cols-1 md:grid-cols-12 gap-12 items-center flex-grow animate-fade-in ovverflow-hidden">
+
+    <!-- Left column: Header text -->
+    <div class="md:col-span-7 space-y-6 order-2 md:order-1">
+      <div
+        class="inline-flex items-center space-x-2 bg-paper-dark border border-dingley/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-dingley shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-pale-copper animate-pulse"></span>
+        <span>Open to Internships &amp; Collabs</span>
+      </div>
+
+      <div class="space-y-2">
+        <h1
+          class="relative font-serif text-5xl md:text-7xl font-bold tracking-tight leading-none text-pine-tree inline-block">
+          Samiksha Patil
+          <!-- Silverstar sticker (scaled to 60px) -->
+          &nbsp;&nbsp;&nbsp;
+          <img src="assets/sliverstar.png" alt="silver star"
+            class="absolute -top-6 -right-12 w-[100px] h-[100px] opacity-90 select-none pointer-events-none animate-pulse">
+        </h1>
+        <div class="text-xs font-semibold text-kombu-green/80 tracking-wide pt-1">
+          Mumbai, India 🇮🇳 &bull; BSc Information Technology &bull; CGPI 9.15 &bull; Open Source Contributor
+        </div>
+        <p class="text-lg md:text-xl font-medium tracking-wide text-dingley uppercase font-semibold">
+          Full Stack Developer &bull; FastAPI Backend Engineer &bull; AI Systems Builder
+        </p>
+      </div>
+
+      <p class="text-base md:text-lg text-kombu-green/90 leading-relaxed max-w-xl">
+        I build full-stack applications, backend systems, and AI-powered tools that solve real-world problems.
       </p>
-      <div class="hero-vibes">
-        <span class="vibe-tag purple">📚 BSc IT '26</span>
-        <span class="vibe-tag">🤖 AI Enthusiast</span>
-        <span class="vibe-tag mauve">☁️ Cloud Explorer</span>
-        <span class="vibe-tag">🔐 Cybersecurity Interest</span>
-        <span class="vibe-tag purple">🚀 Builder Mindset</span>
-      </div>
-      <div class="hero-btns">
-        <a href="#projects" class="btn-main">View Projects ✦</a>
-        <a href="https://www.linkedin.com/in/sammmikshapatil" class="btn-ghost">LinkedIn →</a>
+
+      <!-- Buttons -->
+      <div class="flex flex-wrap gap-4 pt-2">
+        <a href="assets/resume.pdf" download="resume.pdf"
+          class="px-6 py-3 rounded-lg font-semibold text-sm bg-pale-copper text-paper-bg hover:bg-[#b0745b] shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 text-center z-10">
+          View Resume
+        </a>
+        <a href="https://github.com/sammmiksha" target="_blank"
+          class="px-6 py-3 rounded-lg font-semibold text-sm bg-kombu-green text-paper-bg hover:bg-pine-tree shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 text-center z-10">
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/sammmikshapatil" target="_blank"
+          class="px-6 py-3 rounded-lg font-semibold text-sm border-2 border-dingley text-pine-tree hover:bg-paper-dark transition-all duration-300 text-center z-10">
+          LinkedIn
+        </a>
       </div>
     </div>
 
-    <div class="hero-right">
-      <div class="bubble-card bc-1">
-        <span class="bc-emoji">🎓</span>
-        <div class="bc-label">Current CGPA</div>
-        <div class="bc-val">9.2</div>
-        <div class="bc-sub">BSc IT · Sem 5</div>
+    <!-- Right column: Polaroid Photo & Doodles -->
+    <div class="md:col-span-5 flex justify-center relative order-1 md:order-2">
+
+      <div class="relative w-[300px] md:w-[380px] p-4 bg-paper-bg border border-dingley/20 rounded-lg shadow-xl z-10">
+        <!-- Pushpin Decoration -->
+        <div class="absolute -top-3 left-1/2 -ml-3 z-10">
+          <svg class="w-8 h-8 drop-shadow-md text-pale-copper" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z" />
+          </svg>
+        </div>
+
+        <!-- Image Frame -->
+        <div class="overflow-hidden rounded border border-dingley/10 bg-paper-dark">
+          <img src="assets/portrait_working.jpg" alt="Samiksha Patil coding at desk"
+            class="w-full h-auto object-cover select-none">
+        </div>
+
+        <!-- Caption -->
+        <div class="pt-4 text-center">
+          <p class="font-hand text-2xl text-dingley">building systems ✦</p>
+        </div>
       </div>
-      <div class="bubble-card bc-2">
-        <div class="bc-label" style="color:var(--deep);">Status</div>
-        <div class="bc-val" style="font-size:18px; color:var(--deep); line-height:1.4;">Building &amp; Shipping ✦</div>
-        <div class="bc-sub" style="color:var(--deep);opacity:0.7;">React · FastAPI · AWS</div>
+
+      <!-- Accent SVG Arrow sticker -->
+      <div class="absolute -bottom-8 -left-6 hidden md:block text-pale-copper select-none">
+        <svg class="w-20 h-20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 100 100">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M15,20 C35,25 45,5 65,30 C75,40 68,55 50,55 C45,55 35,45 40,35 C42,32 50,32 52,38 L55,50" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M48,42 L55,50 L63,40" />
+        </svg>
+        <span class="absolute top-10 left-12 font-hand text-sm tracking-wider text-pale-copper">Python &bull;
+          React</span>
       </div>
-      <div class="bubble-card bc-3">
-        <span class="bc-emoji">🚀</span>
-        <div class="bc-label">Projects Live</div>
-        <div class="bc-val">03</div>
-        <div class="bc-sub">EduShield · StockAI · SevaSetu</div>
+
+      <!-- Lotus Flower sticker top right -->
+      <div class="absolute -top-10 -right-6 hidden md:block text-dingley opacity-40 select-none">
+        <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 100 100">
+          <path d="M50,15 C45,35 35,40 15,50 C35,60 45,65 50,85 C55,65 65,60 85,50 C65,40 55,35 50,15 Z" />
+          <path d="M50,28 C47,42 42,47 28,50 C42,53 47,58 50,72 C53,58 58,53 72,50 C58,47 53,42 50,28 Z" />
+        </svg>
       </div>
-      <div class="bubble-card bc-4">
-        <div class="bc-label" style="color:var(--blush);">Currently Working On</div>
-        <div class="bc-val" style="font-size:18px; line-height:1.4;">🔬 Shield AI — IDS</div>
-        <div class="bc-sub" style="color:var(--blush);opacity:0.7;">ML · CIC-IDS2017 dataset</div>
+    </div>
+  </header>
+
+  <!-- CURRENTLY BUILDING SECTION -->
+  <section class="w-full bg-paper-dark border-y border-dingley/20 py-8 px-6 shadow-inner animate-fade-in">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div class="flex items-center space-x-3">
+        <span class="font-serif text-xl font-bold tracking-tight text-pine-tree">Currently Building</span>
+        <span class="text-pale-copper font-bold">✦</span>
       </div>
-      <div class="float-star-deco" style="top:10px;right:80px;">✦</div>
-      <div class="float-star-deco" style="bottom:130px;left:80px;animation-delay:0.8s;font-size:16px;">★</div>
-      <div class="float-star-deco" style="top:180px;right:30px;animation-delay:1.5s;font-size:12px;">✦</div>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full md:w-auto flex-grow justify-items-stretch">
+        <div
+          class="bg-paper-bg border border-dingley/20 px-4 py-3 rounded shadow-sm hover:shadow transition-shadow duration-200">
+          <span class="text-pale-copper mr-1 font-bold">→</span>
+          <span class="text-sm font-medium">EduShield</span>
+          <p class="text-xs text-kombu-green/70">AI Academic Integrity</p>
+        </div>
+        <div
+          class="bg-paper-bg border border-dingley/20 px-4 py-3 rounded shadow-sm hover:shadow transition-shadow duration-200">
+          <span class="text-pale-copper mr-1 font-bold">→</span>
+          <span class="text-sm font-medium">NLP Engineering</span>
+          <p class="text-xs text-kombu-green/70">Learning Core Linguistics</p>
+        </div>
+        <div
+          class="bg-paper-bg border border-dingley/20 px-4 py-3 rounded shadow-sm hover:shadow transition-shadow duration-200">
+          <span class="text-pale-copper mr-1 font-bold">→</span>
+          <span class="text-sm font-medium">Exploring LLMs</span>
+          <p class="text-xs text-kombu-green/70">Architecting agent tools</p>
+        </div>
+        <div
+          class="bg-paper-bg border border-dingley/20 px-4 py-3 rounded shadow-sm hover:shadow transition-shadow duration-200">
+          <span class="text-pale-copper mr-1 font-bold">→</span>
+          <span class="text-sm font-medium">Open Source</span>
+          <p class="text-xs text-kombu-green/70">Contributing on GitHub</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about-grid">
-      <div class="reveal">
-        <div class="about-photo-card">
-          <div class="about-avatar">🌸</div>
-          <div class="about-name-card">Samiksha Patil</div>
-          <div class="about-loc">📍 Mumbai, India</div>
-          <div class="about-stat-row">
-            <div class="about-stat">
-              <div class="about-stat-num">9.2</div>
-              <div class="about-stat-lbl">CGPA</div>
-            </div>
-            <div class="about-stat">
-              <div class="about-stat-num">03</div>
-              <div class="about-stat-lbl">Projects</div>
-            </div>
-            <div class="about-stat">
-              <div class="about-stat-num">6+</div>
-              <div class="about-stat-lbl">Tech Stack</div>
-            </div>
-          </div>
+  <!-- ABOUT ME SECTION -->
+  <section id="about" class="reveal max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+
+    <!-- Left column: Taped portrait_cozy.jpg -->
+    <div class="md:col-span-5 flex justify-center relative">
+      <div
+        class="relative w-[340px] md:w-[450px] p-4 bg-paper-bg border border-dingley/20 rounded shadow-lg transform -rotate-2 z-10">
+        <!-- Red flower pressed sticker (scaled to 45px, top-right polaroid corner) -->
+        <img src="assets/redflower.png" alt="pressed flower sticker"
+          class="absolute -top-5 -right-5 w-[90px] h-[90px] z-20 select-none pointer-events-none">
+
+        <!-- Diagonal Washi Tape Sticker (top-left) -->
+        <div
+          class="absolute -top-3 -left-5 bg-brandy/60 border border-brandy/35 w-24 h-7 transform -rotate-12 flex items-center justify-center opacity-85 select-none">
+          <span class="font-hand text-xs tracking-wider text-pine-tree font-bold">good vibes</span>
+        </div>
+
+        <!-- Polaroid paperclip SVG sticker (top-right) -->
+        <div class="absolute -top-5 right-6 text-dingley z-10 select-none">
+          <svg class="w-12 h-12 drop-shadow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M5.828 10.172a4 4 0 00-5.656 5.656l8.485 8.485a6 6 0 108.486-8.486L8.657 7.343a8 8 0 10-11.314-11.314l8.486 8.485" />
+          </svg>
+        </div>
+
+        <div class="overflow-hidden rounded border border-dingley/10 bg-paper-dark">
+          <img src="assets/portrait_cozy.jpg" alt="Samiksha Patil portrait"
+            class="w-full h-auto object-cover select-none">
+        </div>
+
+        <div class="pt-4 text-center">
+          <p class="font-hand text-2xl text-dingley">notebook log ✦</p>
         </div>
       </div>
-      <div class="reveal" style="transition-delay:0.1s">
-        <span class="sec-eyebrow">About Me</span>
-        <h2 class="sec-title">Driven by code,<br><em>obsessed with craft</em> ✦</h2>
-        <p class="about-desc">
-          Hey! I'm Samiksha — a full-stack developer and aspiring AI engineer who loves turning ideas into real,
-          production-ready systems. Whether it's building an AI plagiarism detection platform, a stock analysis engine,
-          or a volunteer matching app, I care deeply about building things that actually work and feel great to use.
-          <br><br>
-          I specialize in React, FastAPI, and PostgreSQL, with a growing interest in AI/ML integration and cloud
-          infrastructure. My CGPA of 9.2 reflects the dedication I put into both learning and building.
+    </div>
+
+    <!-- Right column: Bio and details -->
+    <div class="md:col-span-7 space-y-6 relative">
+
+      <div class="space-y-3 z-10 relative">
+        <div class="flex flex-col space-y-1">
+          <span class="font-hand text-lg text-pale-copper tracking-wider font-semibold">About Me</span>
+          <!-- storyofmylife.png sticker (scaled to 240px - increased size significantly!) -->
+          <img src="assets/storyofmylife.png" alt="Story of my life scrapbook header"
+            class="w-[240px] h-auto self-start select-none rotate-[5deg] -translate-y-[5px]">
+        </div>
+
+        <!-- Headline container with relative positioning for the torn paper backdrop -->
+        <div class="relative inline-block w-full">
+          <!-- Tornpaper backdrop sticker (positioned behind headline, top-right of headline block, slightly rotated) -->
+          <img src="assets/tornpaper.png" alt="torn paper texture background"
+            class="absolute -top-0 -right-6 w-[220px] h-auto opacity-[0.5] z-0 select-none pointer-events-none rotate-0">
+
+          <h2 class="font-serif text-4xl md:text-5xl font-bold tracking-tight text-pine-tree pt-1 relative z-10">
+            Driven by code, obsessed with craft.
+          </h2>
+        </div>
+      </div>
+
+      <p class="text-base text-kombu-green/90 leading-relaxed z-10 relative">
+        Hey! I'm Samiksha — a Full Stack Developer and aspiring AI/ML systems engineer. I care deeply about building
+        clean, production-ready web APIs, data pipelines, and intelligent tools that solve practical problems.
+      </p>
+
+      <p class="text-base text-kombu-green/90 leading-relaxed z-10 relative">
+        I specialize in React, FastAPI, and PostgreSQL, with a growing focus on NLP (Natural Language Processing) and
+        cloud systems. My CGPI of 9.15 (with a Semester 6 GPA of 9.8) reflects the discipline I bring to both academic
+        systems and self-directed building.
+      </p>
+
+      <!-- Grid of key attributes -->
+      <div class="grid grid-cols-2 gap-4 pt-2 z-10 relative">
+        <div class="flex items-center space-x-3 text-sm font-semibold text-pine-tree">
+          <span class="text-pale-copper">✦</span>
+          <span>BSc IT Graduate</span>
+        </div>
+        <div class="flex items-center space-x-3 text-sm font-semibold text-pine-tree">
+          <span class="text-pale-copper">✦</span>
+          <span>FastAPI Backend APIs</span>
+        </div>
+        <div class="flex items-center space-x-3 text-sm font-semibold text-pine-tree">
+          <span class="text-pale-copper">✦</span>
+          <span>React Web Interfaces</span>
+        </div>
+        <div class="flex items-center space-x-3 text-sm font-semibold text-pine-tree">
+          <span class="text-pale-copper">✦</span>
+          <span>PostgreSQL Schemas</span>
+        </div>
+        <div class="flex items-center space-x-3 text-sm font-semibold text-pine-tree">
+          <span class="text-pale-copper">✦</span>
+          <span>AWS Cloud Integration</span>
+        </div>
+        <div class="flex items-center space-x-3 text-sm font-semibold text-pine-tree">
+          <span class="text-pale-copper">✦</span>
+          <span>AI Detection Pipelines</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE TECHNOLOGIES SECTION -->
+  <section id="technologies" class="reveal w-full bg-paper-dark border-y border-dingley/20 py-20 px-6">
+    <div class="max-w-6xl mx-auto space-y-12">
+
+      <!-- Headers -->
+      <div class="text-center space-y-2">
+        <span class="font-hand text-lg text-pale-copper tracking-wider font-semibold">Recruiter Skimmable</span>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold tracking-tight text-pine-tree">
+          Core Technologies
+        </h2>
+        <p class="text-sm text-kombu-green/70 max-w-md mx-auto">
+          Five fields where I concentrate my core development and engineering effort.
         </p>
-        <div class="personal-section">
-          <div class="personal-title">✦ Beyond Code</div>
-          <div class="personal-tags">
-            <span class="p-tag">📖 Avid reader</span>
-            <span class="p-tag">🎵 Music while coding</span>
-            <span class="p-tag">🧩 Problem-solving</span>
-            <span class="p-tag">✏️ Note-taker &amp; documenter</span>
-            <span class="p-tag">🌐 Open-source curious</span>
-            <span class="p-tag">☕ Tea person</span>
+      </div>
+
+      <!-- Core tech cards -->
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+
+        <!-- Tech 1 -->
+        <div
+          class="bg-paper-bg border border-dingley/20 p-6 rounded-lg shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+          <div class="space-y-4">
+            <div
+              class="w-10 h-10 rounded-lg bg-dingley/10 flex items-center justify-center text-dingley font-bold text-lg">
+              01
+            </div>
+            <h3 class="font-serif text-lg font-bold text-pine-tree">FastAPI</h3>
+            <p class="text-xs text-kombu-green/80 leading-relaxed">
+              Building scalable backend APIs. Type safety, automated documentation, and asynchronous runtime handlers.
+            </p>
           </div>
+        </div>
+
+        <!-- Tech 2 -->
+        <div
+          class="bg-paper-bg border border-dingley/20 p-6 rounded-lg shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+          <div class="space-y-4">
+            <div
+              class="w-10 h-10 rounded-lg bg-dingley/10 flex items-center justify-center text-dingley font-bold text-lg">
+              02
+            </div>
+            <h3 class="font-serif text-lg font-bold text-pine-tree">PostgreSQL</h3>
+            <p class="text-xs text-kombu-green/80 leading-relaxed">
+              Designing structured relational systems. Schema modeling, relations mapping, indexing, and complex
+              queries.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tech 3 -->
+        <div
+          class="bg-paper-bg border border-dingley/20 p-6 rounded-lg shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+          <div class="space-y-4">
+            <div
+              class="w-10 h-10 rounded-lg bg-dingley/10 flex items-center justify-center text-dingley font-bold text-lg">
+              03
+            </div>
+            <h3 class="font-serif text-lg font-bold text-pine-tree">React</h3>
+            <p class="text-xs text-kombu-green/80 leading-relaxed">
+              Creating responsive user experiences. Structured component architecture, secure dashboard states, and
+              fetch hooks.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tech 4 -->
+        <div
+          class="bg-paper-bg border border-dingley/20 p-6 rounded-lg shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+          <div class="space-y-4">
+            <div
+              class="w-10 h-10 rounded-lg bg-dingley/10 flex items-center justify-center text-dingley font-bold text-lg">
+              04
+            </div>
+            <h3 class="font-serif text-lg font-bold text-pine-tree">AWS S3</h3>
+            <p class="text-xs text-kombu-green/80 leading-relaxed">
+              Managing cloud-based storage. Programmatic bucket integrations, credential locks, and scalable media
+              folders.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tech 5 -->
+        <div
+          class="bg-paper-bg border border-dingley/20 p-6 rounded-lg shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+          <div class="space-y-4">
+            <div
+              class="w-10 h-10 rounded-lg bg-dingley/10 flex items-center justify-center text-dingley font-bold text-lg">
+              05
+            </div>
+            <h3 class="font-serif text-lg font-bold text-pine-tree">AI &amp; ML</h3>
+            <p class="text-xs text-kombu-green/80 leading-relaxed">
+              Exploring NLP and intelligent systems. Classification engines, text embedding checking, and feature
+              extraction.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK (FOLDER TABS) SECTION -->
+  <section id="tech-stack" class="reveal max-w-4xl mx-auto px-6 py-20 space-y-12">
+
+    <!-- Header -->
+    <div class="text-center space-y-2">
+      <span class="font-hand text-lg text-pale-copper tracking-wider font-semibold">Technical Inventory</span>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold tracking-tight text-pine-tree">Full Stack Skill Index</h2>
+      <p class="text-sm text-kombu-green/70 max-w-sm mx-auto">Click on the folder tabs below to review specific
+        categories from my resume.</p>
+    </div>
+
+    <!-- Folder Container -->
+    <div class="w-full border border-dingley/30 rounded-lg bg-paper-bg shadow-lg overflow-hidden">
+
+      <!-- Tab Headers -->
+      <div
+        class="flex border-b border-dingley/20 bg-paper-dark text-xs sm:text-sm font-semibold overflow-x-auto select-none">
+        <button onclick="switchTab('frontend')" id="tab-frontend"
+          class="flex-1 px-4 py-3 border-r border-dingley/20 text-kombu-green hover:bg-paper-bg/50 transition-colors duration-150 outline-none text-center whitespace-nowrap active-tab">
+          Frontend
+        </button>
+        <button onclick="switchTab('backend')" id="tab-backend"
+          class="flex-1 px-4 py-3 border-r border-dingley/20 text-kombu-green hover:bg-paper-bg/50 transition-colors duration-150 outline-none text-center whitespace-nowrap">
+          Backend
+        </button>
+        <button onclick="switchTab('dbcloud')" id="tab-dbcloud"
+          class="flex-1 px-4 py-3 border-r border-dingley/20 text-kombu-green hover:bg-paper-bg/50 transition-colors duration-150 outline-none text-center whitespace-nowrap">
+          Database &amp; Cloud
+        </button>
+        <button onclick="switchTab('aiml')" id="tab-aiml"
+          class="flex-1 px-4 py-3 text-kombu-green hover:bg-paper-bg/50 transition-colors duration-150 outline-none text-center whitespace-nowrap">
+          AI &amp; ML
+        </button>
+      </div>
+
+      <!-- Tab Content Sheets -->
+      <div class="p-6 min-h-[200px] bg-paper-bg select-text">
+
+        <!-- Frontend Content -->
+        <div id="content-frontend" class="tab-content space-y-6">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">React.js</span>
+            </div>
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">JavaScript</span>
+            </div>
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">Tailwind CSS</span>
+            </div>
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">HTML5</span>
+            </div>
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">CSS3</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend Content -->
+        <div id="content-backend" class="tab-content hidden space-y-6">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">FastAPI</span>
+            </div>
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">REST APIs</span>
+            </div>
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">JWT Authentication</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Database & Cloud Content -->
+        <div id="content-dbcloud" class="tab-content hidden space-y-6">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">PostgreSQL</span>
+            </div>
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">Firebase</span>
+            </div>
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">AWS S3</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI & ML Content -->
+        <div id="content-aiml" class="tab-content hidden space-y-6">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">Plagiarism Detection</span>
+            </div>
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">AI Content Analysis</span>
+            </div>
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">Scikit-learn</span>
+            </div>
+            <div class="flex items-center space-x-3 bg-paper-dark/40 border border-dingley/10 p-3 rounded">
+              <span class="text-pale-copper font-bold">✓</span>
+              <span class="text-sm font-medium">NLP Learning</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT JOURNAL SECTION -->
+  <section id="project-journal" class="reveal max-w-6xl mx-auto px-6 py-20 space-y-8 flex-grow">
+
+    <!-- Section Header with tape sticker -->
+    <div class="text-center relative space-y-2 max-w-md mx-auto">
+      <span class="font-hand text-lg text-pale-copper tracking-wider font-semibold">Interactive Book System</span>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold tracking-tight text-pine-tree">Project Journal</h2>
+      <p class="text-sm text-kombu-green/70">Staggered index dividers open the project log sheets below.</p>
+    </div>
+
+    <!-- Notebook Index Divider Tabs -->
+    <div
+      class="flex flex-wrap md:flex-nowrap justify-start md:space-x-1 border-b border-dingley/30 pt-4 px-4 select-none">
+      <button onclick="selectProject('edushield')" id="tab-proj-edushield"
+        class="px-6 py-2 bg-paper-dark border-t border-x border-dingley/20 rounded-t-md text-xs sm:text-sm font-semibold tracking-wide text-kombu-green hover:bg-paper-bg/40 transform translate-y-1 transition-all duration-200 outline-none active-tab mr-1 md:mr-0">
+        EduShield
+      </button>
+      <button onclick="selectProject('stockai')" id="tab-proj-stockai"
+        class="px-6 py-2 bg-paper-dark border-t border-x border-dingley/20 rounded-t-md text-xs sm:text-sm font-semibold tracking-wide text-kombu-green hover:bg-paper-bg/40 transform translate-y-1 transition-all duration-200 outline-none mr-1 md:mr-0">
+        Stock Analysis
+      </button>
+      <button onclick="selectProject('notebloom')" id="tab-proj-notebloom"
+        class="px-6 py-2 bg-paper-dark border-t border-x border-dingley/20 rounded-t-md text-xs sm:text-sm font-semibold tracking-wide text-kombu-green hover:bg-paper-bg/40 transform translate-y-1 transition-all duration-200 outline-none mr-1 md:mr-0">
+        NoteBloom
+      </button>
+      <button onclick="selectProject('sevasetu')" id="tab-proj-sevasetu"
+        class="px-6 py-2 bg-paper-dark border-t border-x border-dingley/20 rounded-t-md text-xs sm:text-sm font-semibold tracking-wide text-kombu-green hover:bg-paper-bg/40 transform translate-y-1 transition-all duration-200 outline-none">
+        SevaSetu
+      </button>
+    </div>
+
+    <!-- DUAL PAGE BOOK CONTAINER (Desktop Layout >= 768px) -->
+    <div class="hidden md:block relative w-full h-[580px] perspective-1500 font-sans mt-2">
+      <div class="w-full h-full relative transform-style-3d flex">
+
+        <!-- LEFT PAGE (Static Base: INDEX) -->
+        <div
+          class="w-1/2 h-full bg-paper-bg border-r border-dingley/20 rounded-l-lg shadow-xl p-8 flex flex-col justify-between select-text z-0 border-l border-y border-dingley/10">
+          <div id="left-base-content" class="space-y-6">
+            <!-- Dynamically Loaded -->
+          </div>
+          <div
+            class="text-xs text-dingley font-semibold tracking-wide uppercase select-none border-t border-dingley/10 pt-2 flex justify-between">
+            <span>INDEX</span>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- RIGHT PAGE (Static Base: Lessons Learned) -->
+        <div
+          class="w-1/2 h-full bg-paper-bg rounded-r-lg shadow-xl p-8 flex flex-col justify-between select-text z-0 border-r border-y border-dingley/10">
+          <div id="right-base-content" class="space-y-6">
+            <!-- Dynamically Loaded -->
+          </div>
+          <div
+            class="text-xs text-dingley font-semibold tracking-wide uppercase select-none border-t border-dingley/10 pt-2 flex justify-between">
+            <span>Page 16</span>
+            <span>Lessons Learned</span>
+          </div>
+        </div>
+
+        <!-- FLIPPABLE SHEETS CONTAINER -->
+        <div id="book-sheets-container" class="absolute inset-0 pointer-events-none transform-style-3d z-20">
+          <!-- Dynamically Loaded Sheets 1 to 8 -->
+        </div>
+
+        <!-- Binder Spine decoration -->
+        <div
+          class="absolute left-1/2 top-0 bottom-0 w-6 -ml-3 bg-gradient-to-r from-paper-dark/70 via-paper-dark/30 to-paper-dark/70 z-30 flex flex-col justify-around py-6 pointer-events-none border-x border-dingley/5">
+          <div class="w-1.5 h-6 rounded-full bg-dingley/30 mx-auto border-t border-pine-tree/10 shadow-inner"></div>
+          <div class="w-1.5 h-6 rounded-full bg-dingley/30 mx-auto border-t border-pine-tree/10 shadow-inner"></div>
+          <div class="w-1.5 h-6 rounded-full bg-dingley/30 mx-auto border-t border-pine-tree/10 shadow-inner"></div>
+          <div class="w-1.5 h-6 rounded-full bg-dingley/30 mx-auto border-t border-pine-tree/10 shadow-inner"></div>
+          <div class="w-1.5 h-6 rounded-full bg-dingley/30 mx-auto border-t border-pine-tree/10 shadow-inner"></div>
+          <div class="w-1.5 h-6 rounded-full bg-dingley/30 mx-auto border-t border-pine-tree/10 shadow-inner"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RESPONSIVE MOBILE NOTEBOOK LAYOUT (< 768px) -->
+    <div class="md:hidden w-full space-y-6 font-sans">
+      <!-- Statically renders selected project details stacked vertically inside parchment pages -->
+      <div class="bg-paper-bg border border-dingley/20 rounded-lg p-6 shadow-md space-y-6 select-text">
+        <div id="mobile-story" class="space-y-4">
+          <!-- Dynamically Loaded Story -->
+        </div>
+      </div>
+
+      <div class="bg-paper-bg border border-dingley/20 rounded-lg p-6 shadow-md space-y-6 select-text">
+        <div id="mobile-details" class="space-y-4">
+          <!-- Dynamically Loaded Details -->
+        </div>
+      </div>
+
+      <div class="bg-paper-bg border border-dingley/20 rounded-lg p-6 shadow-md space-y-6 select-text">
+        <div id="mobile-arch" class="space-y-4">
+          <!-- Dynamically Loaded Architecture -->
+        </div>
+      </div>
+
+      <div class="bg-paper-bg border border-dingley/20 rounded-lg p-6 shadow-md space-y-6 select-text">
+        <div id="mobile-lessons" class="space-y-4">
+          <!-- Dynamically Loaded Lessons Learned -->
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="skills-intro">
-      <div class="reveal">
-        <span class="sec-eyebrow">Skills</span>
-        <h2 class="sec-title">Tools I<br><em>love</em> ✦</h2>
-        <div style="margin-top:36px;">
-          <div class="skill-category">
-            <div class="skill-cat-name">Frontend</div>
-            <div class="skill-tags">
-              <span class="s-tag">React.js</span>
-              <span class="s-tag">Tailwind CSS</span>
-              <span class="s-tag">HTML5</span>
-              <span class="s-tag">CSS3</span>
-            </div>
+  <!-- TIMELINE SECTION -->
+  <section id="timeline" class="reveal max-w-5xl mx-auto px-6 py-20 space-y-12">
+
+    <!-- Header with tape sticker -->
+    <div class="text-center relative space-y-2 max-w-md mx-auto">
+      <span class="font-hand text-lg text-pale-copper tracking-wider font-semibold">My Journey</span>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold tracking-tight text-pine-tree">Developer Timeline</h2>
+      <p class="text-sm text-kombu-green/70">A chronological log of my education, key milestones, and engineering
+        growth.</p>
+    </div>
+
+    <!-- Alternating Curved Journey Path Timeline -->
+    <div class="relative select-text">
+      <!-- Mobile straight vertical line -->
+      <div class="md:hidden absolute left-[20px] top-0 bottom-0 w-0.5 border-l-2 border-dashed border-dingley/30 z-0">
+      </div>
+
+      <!-- Row 1: BSc IT (Left) & EduShield (Right) -->
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_80px_1fr] items-center relative">
+        <!-- Left Column -->
+        <div class="col-start-1 md:col-start-1 flex justify-end pr-0 md:pr-8 relative">
+          <!-- Mobile Circle -->
+          <div
+            class="absolute left-[-29px] top-[24px] md:hidden w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#8fbc8f] z-10 shadow-sm">
           </div>
-          <div class="skill-category">
-            <div class="skill-cat-name">Backend &amp; DB</div>
-            <div class="skill-tags">
-              <span class="s-tag">FastAPI</span>
-              <span class="s-tag">PostgreSQL</span>
-              <span class="s-tag">REST APIs</span>
-              <span class="s-tag">Auth</span>
-            </div>
+
+          <!-- Card content -->
+          <div
+            class="bg-paper-bg border border-dingley/20 p-4 rounded shadow-sm hover:shadow transition-shadow duration-200 w-full max-w-sm relative mt-6 md:mt-0">
+            <span class="font-serif font-bold text-dingley text-xs tracking-wide block mb-1">2023–2026</span>
+            <h3 class="font-serif text-base font-bold text-pine-tree">BSc Information Technology</h3>
+            <p class="text-[10px] md:text-xs text-pale-copper font-semibold">Mumbai University &bull; CGPI 9.15</p>
+            <p class="text-xs text-kombu-green/80 mt-1.5 leading-relaxed font-medium">Maintained top academic marks (Sem
+              6 GPA: 9.8) while discovering full-stack systems engineering.</p>
           </div>
-          <div class="skill-category">
-            <div class="skill-cat-name">AI / ML</div>
-            <div class="skill-tags">
-              <span class="s-tag">Scikit-learn</span>
-              <span class="s-tag">HuggingFace</span>
-              <span class="s-tag">Data Processing</span>
-            </div>
+        </div>
+
+        <!-- Center Column -->
+        <div class="hidden md:flex col-start-2 relative w-full h-full min-h-[160px] items-center justify-center">
+          <svg class="absolute inset-0 w-full h-full pointer-events-none fill-none stroke-dingley/30 z-0"
+            viewBox="0 0 80 160" preserveAspectRatio="none" stroke-width="2.5" stroke-dasharray="6 6">
+            <path d="M 40 0 C 40 20, 20 20, 20 40 C 20 60, 60 60, 60 120 C 60 140, 40 140, 40 160" />
+          </svg>
+          <!-- Milestone 1 (BSc IT) -->
+          <div
+            class="absolute left-1/4 top-[25%] -translate-x-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#8fbc8f] z-10 shadow-sm">
           </div>
-          <div class="skill-category">
-            <div class="skill-cat-name">Languages</div>
-            <div class="skill-tags">
-              <span class="s-tag">Python</span>
-              <span class="s-tag">JavaScript</span>
-              <span class="s-tag">C++</span>
-              <span class="s-tag">Java</span>
-              <span class="s-tag">Flutter</span>
-              <span class="s-tag">SQL</span>
-            </div>
+          <!-- Milestone 2 (EduShield) -->
+          <div
+            class="absolute left-3/4 top-[75%] -translate-x-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#d8b08c] z-10 shadow-sm animate-pulse-circle">
           </div>
-          <div class="skill-category">
-            <div class="skill-cat-name">Tools &amp; Infra</div>
-            <div class="skill-tags">
-              <span class="s-tag">AWS S3</span>
-              <span class="s-tag">Firebase</span>
-              <span class="s-tag">Git / GitHub</span>
-              <span class="s-tag">Render</span>
-            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-start-1 md:col-start-3 flex justify-start pl-0 md:pl-8 relative">
+          <!-- Mobile Circle -->
+          <div
+            class="absolute left-[-29px] top-[24px] md:hidden w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#d8b08c] z-10 shadow-sm animate-pulse-circle">
+          </div>
+
+          <!-- Card content -->
+          <div
+            class="bg-paper-bg border border-dingley/20 p-4 rounded shadow-sm hover:shadow transition-shadow duration-200 w-full max-w-sm relative mt-6 md:mt-0">
+            <!-- AI Sticker -->
+            <div
+              class="absolute -top-3 -right-3 w-8 h-8 bg-pine-tree text-brandy border border-brandy/20 rounded-lg flex items-center justify-center shadow-sm rotate-12 z-20 select-none pointer-events-none text-[9px] font-bold font-sans">
+              AI</div>
+            <span class="font-serif font-bold text-dingley text-xs tracking-wide block mb-1">2025–Present</span>
+            <h3 class="font-serif text-base font-bold text-pine-tree">EduShield</h3>
+            <p class="text-[10px] md:text-xs text-pale-copper font-semibold">AI Academic Integrity Platform</p>
+            <p class="text-xs text-kombu-green/80 mt-1.5 leading-relaxed font-medium">Built secure classroom REST
+              endpoints, AWS S3 storage buckets, and ML text classifiers.</p>
           </div>
         </div>
       </div>
 
-      <div class="skill-bars reveal" style="transition-delay:0.12s; padding-top:80px;">
-        <div class="bar-item">
-          <div class="bar-top"><span>Python &amp; FastAPI</span><span class="bar-pct">90%</span></div>
-          <div class="bar-track">
-            <div class="bar-fill" data-w="0.90"></div>
+      <!-- Row 2: CS50x (Left) & Hack@Skill (Right) -->
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_80px_1fr] items-center relative mt-6 md:mt-0">
+        <!-- Left Column -->
+        <div class="col-start-1 md:col-start-1 flex justify-end pr-0 md:pr-8 relative">
+          <!-- Mobile Circle -->
+          <div
+            class="absolute left-[-29px] top-[24px] md:hidden w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#8fbc8f] z-10 shadow-sm">
+          </div>
+
+          <!-- Card content -->
+          <div
+            class="bg-paper-bg border border-dingley/20 p-4 rounded shadow-sm hover:shadow transition-shadow duration-200 w-full max-w-sm relative mt-6 md:mt-0">
+            <span class="font-serif font-bold text-dingley text-xs tracking-wide block mb-1">Apr–Jun 2026</span>
+            <h3 class="font-serif text-base font-bold text-pine-tree">CS50x: Intro to CS</h3>
+            <p class="text-[10px] md:text-xs text-pale-copper font-semibold">Harvard University (Online)</p>
+            <p class="text-xs text-kombu-green/80 mt-1.5 leading-relaxed font-medium">Constructed solid coding
+              foundations: memory management, C, Python, SQL, and data structures.</p>
           </div>
         </div>
-        <div class="bar-item">
-          <div class="bar-top"><span>React &amp; Frontend</span><span class="bar-pct">85%</span></div>
-          <div class="bar-track">
-            <div class="bar-fill" data-w="0.85"></div>
+
+        <!-- Center Column -->
+        <div class="hidden md:flex col-start-2 relative w-full h-full min-h-[160px] items-center justify-center">
+          <svg class="absolute inset-0 w-full h-full pointer-events-none fill-none stroke-dingley/30 z-0"
+            viewBox="0 0 80 160" preserveAspectRatio="none" stroke-width="2.5" stroke-dasharray="6 6">
+            <path d="M 40 0 C 40 20, 20 20, 20 40 C 20 60, 60 60, 60 120 C 60 140, 40 140, 40 160" />
+          </svg>
+          <!-- Milestone 3 (CS50x) -->
+          <div
+            class="absolute left-1/4 top-[25%] -translate-x-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#8fbc8f] z-10 shadow-sm">
+          </div>
+          <!-- Milestone 4 (Hack@Skill) -->
+          <div
+            class="absolute left-3/4 top-[75%] -translate-x-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#8fbc8f] z-10 shadow-sm">
           </div>
         </div>
-        <div class="bar-item">
-          <div class="bar-top"><span>PostgreSQL &amp; Databases</span><span class="bar-pct">80%</span></div>
-          <div class="bar-track">
-            <div class="bar-fill" data-w="0.80"></div>
+
+        <!-- Right Column -->
+        <div class="col-start-1 md:col-start-3 flex justify-start pl-0 md:pl-8 relative">
+          <!-- Mobile Circle -->
+          <div
+            class="absolute left-[-29px] top-[24px] md:hidden w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#8fbc8f] z-10 shadow-sm">
           </div>
-        </div>
-        <div class="bar-item">
-          <div class="bar-top"><span>AI / ML Integration</span><span class="bar-pct">78%</span></div>
-          <div class="bar-track">
-            <div class="bar-fill" data-w="0.78"></div>
-          </div>
-        </div>
-        <div class="bar-item">
-          <div class="bar-top"><span>AWS &amp; Cloud Tools</span><span class="bar-pct">70%</span></div>
-          <div class="bar-track">
-            <div class="bar-fill" data-w="0.70"></div>
-          </div>
-        </div>
-        <div class="bar-item">
-          <div class="bar-top"><span>System Design &amp; APIs</span><span class="bar-pct">75%</span></div>
-          <div class="bar-track">
-            <div class="bar-fill" data-w="0.75"></div>
+
+          <!-- Card content -->
+          <div
+            class="bg-paper-bg border border-dingley/20 p-4 rounded shadow-sm hover:shadow transition-shadow duration-200 w-full max-w-sm relative mt-6 md:mt-0">
+            <span class="font-serif font-bold text-dingley text-xs tracking-wide block mb-1">Apr 2026</span>
+            <h3 class="font-serif text-base font-bold text-pine-tree">Hack@Skill Hackathon</h3>
+            <p class="text-[10px] md:text-xs text-pale-copper font-semibold">Google Solution Challenge &bull; Two-Member
+              Team</p>
+            <p class="text-xs text-kombu-green/80 mt-1.5 leading-relaxed font-medium">Collaborated under a strict
+              timeline to fast-track crisis support routing and data synchronization features.</p>
           </div>
         </div>
       </div>
+
+      <!-- Row 3: SevaSetu (Left) & Stock Analysis (Right) -->
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_80px_1fr] items-center relative mt-6 md:mt-0">
+        <!-- Left Column -->
+        <div class="col-start-1 md:col-start-1 flex justify-end pr-0 md:pr-8 relative">
+          <!-- Mobile Circle -->
+          <div
+            class="absolute left-[-29px] top-[24px] md:hidden w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#8fbc8f] z-10 shadow-sm">
+          </div>
+
+          <!-- Card content -->
+          <div
+            class="bg-paper-bg border border-dingley/20 p-4 rounded shadow-sm hover:shadow transition-shadow duration-200 w-full max-w-sm relative mt-6 md:mt-0">
+            <span class="font-serif font-bold text-dingley text-xs tracking-wide block mb-1">Apr 2026</span>
+            <h3 class="font-serif text-base font-bold text-pine-tree">SevaSetu v2</h3>
+            <p class="text-[10px] md:text-xs text-pale-copper font-semibold">Community Relief Platform</p>
+            <p class="text-xs text-kombu-green/80 mt-1.5 leading-relaxed font-medium">Deployed Firebase Realtime Sync
+              database instances matching crisis needs to local volunteers.</p>
+          </div>
+        </div>
+
+        <!-- Center Column -->
+        <div class="hidden md:flex col-start-2 relative w-full h-full min-h-[160px] items-center justify-center">
+          <svg class="absolute inset-0 w-full h-full pointer-events-none fill-none stroke-dingley/30 z-0"
+            viewBox="0 0 80 160" preserveAspectRatio="none" stroke-width="2.5" stroke-dasharray="6 6">
+            <path d="M 40 0 C 40 20, 20 20, 20 40 C 20 60, 60 60, 60 120 C 60 140, 40 140, 40 160" />
+          </svg>
+          <!-- Milestone 5 (SevaSetu) -->
+          <div
+            class="absolute left-1/4 top-[25%] -translate-x-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#8fbc8f] z-10 shadow-sm">
+          </div>
+          <!-- Milestone 6 (Stock Analysis) -->
+          <div
+            class="absolute left-3/4 top-[75%] -translate-x-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#d8b08c] z-10 shadow-sm animate-pulse-circle">
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-start-1 md:col-start-3 flex justify-start pl-0 md:pl-8 relative">
+          <!-- Mobile Circle -->
+          <div
+            class="absolute left-[-29px] top-[24px] md:hidden w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#d8b08c] z-10 shadow-sm animate-pulse-circle">
+          </div>
+
+          <!-- Card content -->
+          <div
+            class="bg-paper-bg border border-dingley/20 p-4 rounded shadow-sm hover:shadow transition-shadow duration-200 w-full max-w-sm relative mt-6 md:mt-0">
+            <!-- Chart sticker -->
+            <div
+              class="absolute -top-3 -right-3 w-8 h-8 bg-paper-dark border border-dingley/20 rounded-full flex items-center justify-center shadow-sm -rotate-6 z-20 select-none pointer-events-none text-pale-copper">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.94" />
+              </svg>
+            </div>
+            <span class="font-serif font-bold text-dingley text-xs tracking-wide block mb-1">May 2026–Present</span>
+            <h3 class="font-serif text-base font-bold text-pine-tree">Stock Analysis</h3>
+            <p class="text-[10px] md:text-xs text-pale-copper font-semibold">Market Prediction Assistant</p>
+            <p class="text-xs text-kombu-green/80 mt-1.5 leading-relaxed font-medium">Created technical indicators, EMA
+              line charts, and asynchronous Python api cache pools.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 4: NoteBloom (Left) & NLP Journey (Right) -->
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_80px_1fr] items-center relative mt-6 md:mt-0">
+        <!-- Left Column -->
+        <div class="col-start-1 md:col-start-1 flex justify-end pr-0 md:pr-8 relative">
+          <!-- Mobile Circle -->
+          <div
+            class="absolute left-[-29px] top-[24px] md:hidden w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#d8b08c] z-10 shadow-sm animate-pulse-circle">
+          </div>
+
+          <!-- Card content -->
+          <div
+            class="bg-paper-bg border border-dingley/20 p-4 rounded shadow-sm hover:shadow transition-shadow duration-200 w-full max-w-sm relative mt-6 md:mt-0">
+            <!-- Notebook sticker -->
+            <div
+              class="absolute -top-3 -right-3 w-8 h-8 bg-brandy text-pine-tree border border-pine-tree/20 flex items-center justify-center rounded shadow-sm rotate-6 z-20 text-[10px] font-bold font-hand select-none pointer-events-none">
+              NOTE</div>
+            <span class="font-serif font-bold text-dingley text-xs tracking-wide block mb-1">May 2026–Present</span>
+            <h3 class="font-serif text-base font-bold text-pine-tree">NoteBloom</h3>
+            <p class="text-[10px] md:text-xs text-pale-copper font-semibold">Digital Reading Journal</p>
+            <p class="text-xs text-kombu-green/80 mt-1.5 leading-relaxed font-medium">Built a vanilla JS notepad with
+              custom canvases and Local Storage document serialization.</p>
+          </div>
+        </div>
+
+        <!-- Center Column -->
+        <div class="hidden md:flex col-start-2 relative w-full h-full min-h-[160px] items-center justify-center">
+          <svg class="absolute inset-0 w-full h-full pointer-events-none fill-none stroke-dingley/30 z-0"
+            viewBox="0 0 80 160" preserveAspectRatio="none" stroke-width="2.5" stroke-dasharray="6 6">
+            <path d="M 40 0 C 40 20, 20 20, 20 40 C 20 60, 60 60, 60 120 C 60 140, 40 140, 40 160" />
+          </svg>
+          <!-- Milestone 7 (NoteBloom) -->
+          <div
+            class="absolute left-1/4 top-[25%] -translate-x-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#d8b08c] z-10 shadow-sm animate-pulse-circle">
+          </div>
+          <!-- Milestone 8 (NLP Journey) -->
+          <div
+            class="absolute left-3/4 top-[75%] -translate-x-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#d8b08c] z-10 shadow-sm animate-pulse-circle">
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-start-1 md:col-start-3 flex justify-start pl-0 md:pl-8 relative">
+          <!-- Mobile Circle -->
+          <div
+            class="absolute left-[-29px] top-[24px] md:hidden w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#d8b08c] z-10 shadow-sm animate-pulse-circle">
+          </div>
+
+          <!-- Card content -->
+          <div
+            class="bg-paper-bg border border-dingley/20 p-4 rounded shadow-sm hover:shadow transition-shadow duration-200 w-full max-w-sm relative mt-6 md:mt-0">
+            <!-- Coffee sticker (increased size by 25%) -->
+            <img src="assets/coffee.png" alt="coffee cup sticker"
+              class="absolute -top-4 -right-4 w-10 h-10 select-none pointer-events-none z-20">
+            <span class="font-serif font-bold text-dingley text-xs tracking-wide block mb-1">May 2026–Present</span>
+            <h3 class="font-serif text-base font-bold text-pine-tree">NLP Engineering Journey</h3>
+            <p class="text-[10px] md:text-xs text-pale-copper font-semibold">Continuous Exploration &bull; Machine
+              Learning</p>
+            <p class="text-xs text-kombu-green/80 mt-1.5 leading-relaxed font-medium">Deepening comprehension in NLP
+              computational tokenizers, text embeddings, and classification models.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 5: Open Source (Left) & Google ML (Right) -->
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_80px_1fr] items-center relative mt-6 md:mt-0">
+        <!-- Left Column -->
+        <div class="col-start-1 md:col-start-1 flex justify-end pr-0 md:pr-8 relative">
+          <!-- Mobile Circle -->
+          <div
+            class="absolute left-[-29px] top-[24px] md:hidden w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#d8b08c] z-10 shadow-sm animate-pulse-circle">
+          </div>
+
+          <!-- Card content -->
+          <div
+            class="bg-paper-bg border border-dingley/20 p-4 rounded shadow-sm hover:shadow transition-shadow duration-200 w-full max-w-sm relative mt-6 md:mt-0">
+            <!-- Disco ball sticker (increased size by 40%, spins) -->
+            <img src="assets/discoball.png" alt="disco ball sticker"
+              class="absolute -top-6 -right-6 w-14 h-14 select-none pointer-events-none z-20 animate-[spin_25s_linear_infinite]">
+            <span class="font-serif font-bold text-dingley text-xs tracking-wide block mb-1">Jun 2026–Present</span>
+            <h3 class="font-serif text-base font-bold text-pine-tree">Open Source Contributions</h3>
+            <p class="text-[10px] md:text-xs text-pale-copper font-semibold">GitHub PRs &amp; Fixes</p>
+            <p class="text-xs text-kombu-green/80 mt-1.5 leading-relaxed font-medium">Refining collaborative repository
+              layouts, auditing active issues, and pushing optimizations.</p>
+          </div>
+        </div>
+
+        <!-- Center Column -->
+        <div class="hidden md:flex col-start-2 relative w-full h-full min-h-[160px] items-center justify-center">
+          <svg class="absolute inset-0 w-full h-full pointer-events-none fill-none stroke-dingley/30 z-0"
+            viewBox="0 0 80 160" preserveAspectRatio="none" stroke-width="2.5" stroke-dasharray="6 6">
+            <path d="M 40 0 C 40 20, 20 20, 20 40 C 20 60, 60 60, 60 120 C 60 140, 40 140, 40 160" />
+          </svg>
+          <!-- Milestone 9 (Open Source) -->
+          <div
+            class="absolute left-1/4 top-[25%] -translate-x-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#d8b08c] z-10 shadow-sm animate-pulse-circle">
+          </div>
+          <!-- Milestone 10 (Google ML) -->
+          <div
+            class="absolute left-3/4 top-[75%] -translate-x-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#d8b08c] z-10 shadow-sm animate-pulse-circle">
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-start-1 md:col-start-3 flex justify-start pl-0 md:pl-8 relative">
+          <!-- Mobile Circle -->
+          <div
+            class="absolute left-[-29px] top-[24px] md:hidden w-[18px] h-[18px] rounded-full border-[3px] border-[#5d5a45] bg-[#d8b08c] z-10 shadow-sm animate-pulse-circle">
+          </div>
+
+          <!-- Card content -->
+          <div
+            class="bg-paper-bg border border-dingley/20 p-4 rounded shadow-sm hover:shadow transition-shadow duration-200 w-full max-w-sm relative mt-6 md:mt-0">
+            <span class="font-serif font-bold text-dingley text-xs tracking-wide block mb-1">Present</span>
+            <h3 class="font-serif text-base font-bold text-pine-tree">Google ML Crash Course</h3>
+            <p class="text-[10px] md:text-xs text-pale-copper font-semibold">In Progress &bull; Learning Path</p>
+            <p class="text-xs text-kombu-green/80 mt-1.5 leading-relaxed font-medium">Developing hands-on skills in
+              linear and logistic regression models, neural networks, and diagnostic validation metrics.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 6: Coming Soon... (Left) -->
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_80px_1fr] items-center relative mt-6 md:mt-0">
+        <!-- Left Column -->
+        <div class="col-start-1 md:col-start-1 flex justify-end pr-0 md:pr-8 relative">
+          <!-- Mobile Circle -->
+          <div
+            class="absolute left-[-29px] top-[24px] md:hidden w-[18px] h-[18px] rounded-full border-[3px] border-dashed border-[#5d5a45] bg-transparent z-10 shadow-sm">
+          </div>
+
+          <!-- Card content -->
+          <div
+            class="bg-paper-bg border border-dashed border-dingley/40 p-4 rounded shadow-sm w-full max-w-sm relative mt-6 md:mt-0">
+            <span class="font-serif font-bold text-dingley text-xs tracking-wide block mb-1">Soon</span>
+            <h3 class="font-serif text-base font-bold text-kombu-green/70">Coming Soon...</h3>
+            <p class="text-[10px] md:text-xs text-dingley font-semibold">Next Milestones</p>
+            <p class="text-xs text-kombu-green/50 mt-1.5 leading-relaxed font-medium">Exploring distributed systems
+              patterns, database query plan tuning, and production cloud deploys.</p>
+          </div>
+        </div>
+
+        <!-- Center Column -->
+        <div class="hidden md:flex col-start-2 relative w-full h-full min-h-[160px] items-center justify-center">
+          <svg class="absolute inset-0 w-full h-full pointer-events-none fill-none stroke-dingley/30 z-0"
+            viewBox="0 0 80 160" preserveAspectRatio="none" stroke-width="2.5" stroke-dasharray="6 6">
+            <path d="M 40 0 C 40 20, 20 20, 20 40" />
+          </svg>
+          <!-- Milestone 11 (Coming Soon) -->
+          <div
+            class="absolute left-1/4 top-[25%] -translate-x-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full border-[3px] border-dashed border-[#5d5a45] bg-transparent z-10 shadow-sm">
+          </div>
+        </div>
+
+        <!-- Right Column (Empty) -->
+        <div class="hidden md:block col-start-3"></div>
+      </div>
+
     </div>
   </section>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="reveal">
-      <span class="sec-eyebrow">Featured Work</span>
-      <h2 class="sec-title">Projects that<br><em>actually ship</em> ✦</h2>
-    </div>
 
-    <div class="proj-grid">
-      <!-- EduShield - featured -->
-      <div class="proj-card featured reveal" style="transition-delay:0.1s">
-        <div>
-          <span class="proj-num">01</span>
-          <h3 class="proj-name">EduShield</h3>
-          <p class="proj-desc">My final year project — an AI-powered academic integrity platform. Detects plagiarism and
-            AI-generated content, with role-based access for students and faculty, AWS S3 file storage, and a scalable
-            FastAPI backend.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">React</span>
-            <span class="proj-tag">FastAPI</span>
-            <span class="proj-tag">PostgreSQL</span>
-            <span class="proj-tag">AWS S3</span>
-            <span class="proj-tag">HuggingFace</span>
-            <span class="proj-tag">AI Detection</span>
-          </div>
-          <a href="#" class="proj-link">View Project →</a>
-        </div>
-        <div class="proj-features">
-          <div class="proj-feat-title">Core Features</div>
-          <div class="proj-feat-item"><span class="feat-check">✦</span> AI plagiarism detection engine</div>
-          <div class="proj-feat-item"><span class="feat-check">✦</span> AI-generated content classifier</div>
-          <div class="proj-feat-item"><span class="feat-check">✦</span> Role-based auth (student/faculty)</div>
-          <div class="proj-feat-item"><span class="feat-check">✦</span> AWS S3 scalable file storage</div>
-          <div class="proj-feat-item"><span class="feat-check">✦</span> Section-wise assignment management</div>
-        </div>
+  <!-- DEVELOPER ACTIVITY SECTION -->
+  <section id="developer-activity"
+    class="reveal w-full bg-paper-dark border-y border-dingley/20 py-20 px-6 relative overflow-hidden">
+    <!-- Headset sticker top right (scaled to 70px) -->
+    <img src="assets/headset.png" alt="headset focus sticker"
+      class="absolute top-4 right-6 w-[90px] h-auto opacity-80 select-none pointer-events-none">
+    <!-- Coffee sticker bottom left (scaled to 70px) -->
+    <img src="assets/coffee.png" alt="coffee cup sticker"
+      class="absolute bottom-4 left-6 w-[100px] h-auto opacity-80 select-none pointer-events-none">
+    <!-- Sun sticker (scaled to 500px/650px, behind frame glow) -->
+    <img src="assets/sun.png" alt="sun glow" class="absolute
+  top-[120px]
+  right-[250px]
+  w-[100px]
+  opacity-70
+  z-0
+  pointer-events-none
+  select-none">
+
+    <div class="max-w-4xl mx-auto space-y-12">
+
+      <!-- Headers -->
+      <div class="text-center space-y-2">
+        <span class="font-hand text-lg text-pale-copper tracking-wider font-semibold">Active Logging</span>
+        <h2 class="font-serif text-4xl md:text-5xl font-bold tracking-tight text-pine-tree">Developer Activity</h2>
+        <p class="text-sm text-kombu-green/70">A textual status log kept to capture current engineering focus.</p>
       </div>
 
-      <!-- StockAI -->
-      <div class="proj-card reveal" style="transition-delay:0.15s">
-        <span class="proj-num">02</span>
-        <div class="proj-live-badge"><span
-            style="width:7px;height:7px;background:#7DCCA0;border-radius:50%;display:inline-block;"></span> Live</div>
-        <h3 class="proj-name">StockAI</h3>
-        <p class="proj-desc">Full-stack stock analysis platform with real-time market data and AI-driven trading
-          signals. Implements RSI, EMA, MACD, and volatility indicators. Built with robust retry and fallback logic for
-          high API reliability.</p>
-        <div class="proj-tags">
-          <span class="proj-tag">React</span>
-          <span class="proj-tag">Tailwind CSS</span>
-          <span class="proj-tag">FastAPI</span>
-          <span class="proj-tag">yfinance</span>
-          <span class="proj-tag">Firebase</span>
-          <span class="proj-tag">Render</span>
-        </div>
-        <a href="https://stock-analysis-2f871.web.app" target="_blank" class="proj-link">View Live Site →</a>
-      </div>
+      <!-- Grid Logs -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 select-text">
 
-      <!-- SevaSetu -->
-      <div class="proj-card reveal" style="transition-delay:0.2s">
-        <span class="proj-num">03</span>
-        <div class="proj-live-badge"><span
-            style="width:7px;height:7px;background:#7DCCA0;border-radius:50%;display:inline-block;"></span> Live</div>
-        <h3 class="proj-name">SevaSetu v2</h3>
-        <p class="proj-desc">A volunteer and help-matching platform connecting people who need support with those who
-          can provide it. Implemented authentication, user workflows, and a refined UI/UX — fully deployed.</p>
-        <div class="proj-tags">
-          <span class="proj-tag">React</span>
-          <span class="proj-tag">Firebase</span>
-          <span class="proj-tag">Authentication</span>
-          <span class="proj-tag">UX Design</span>
-        </div>
-        <a href="https://seva-setu-9a8e3.web.app/" target="_blank" class="proj-link">View Live Site →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section id="education">
-    <div class="edu-layout">
-      <div class="reveal">
-        <span class="sec-eyebrow">Education</span>
-        <h2 class="sec-title">Always <em>learning</em> ✦</h2>
-        <div style="margin-top:32px;">
-          <div class="edu-card">
-            <div class="edu-badge">🎓 Currently Enrolled</div>
-            <div class="edu-deg">BSc in Information Technology</div>
-            <div class="edu-school">2023 – 2026 · Mumbai</div>
-            <div class="cgpa-row">
-              <span class="cgpa-big">9.2</span>
-              <span class="cgpa-denom">/10</span>
-            </div>
-            <div class="cgpa-lbl">CGPA · Semester 5 · Top performer ✦</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="edu-right reveal" style="transition-delay:0.1s">
-        <div class="edu-highlights">
-          <div class="edu-hl">
-            <div class="edu-hl-icon ic-purple">🤖</div>
-            <div class="edu-hl-body">
-              <h4>Artificial Intelligence &amp; ML</h4>
-              <p>Hands-on model training, content analysis, and intrusion detection system design using CIC-IDS2017
-                dataset</p>
-            </div>
-          </div>
-          <div class="edu-hl">
-            <div class="edu-hl-icon ic-green">💻</div>
-            <div class="edu-hl-body">
-              <h4>Full-Stack Web Development</h4>
-              <p>Production applications using React, FastAPI, PostgreSQL — deployed with Firebase &amp; Render</p>
-            </div>
-          </div>
-          <div class="edu-hl">
-            <div class="edu-hl-icon ic-indigo">🔐</div>
-            <div class="edu-hl-body">
-              <h4>Cybersecurity &amp; System Design</h4>
-              <p>Network anomaly detection, role-based auth systems, and secure backend architectures</p>
-            </div>
-          </div>
-          <div class="edu-hl">
-            <div class="edu-hl-icon ic-purple">☁️</div>
-            <div class="edu-hl-body">
-              <h4>Cloud Infrastructure</h4>
-              <p>AWS S3 integrations, Firebase deployment, Render hosting — real cloud workflows from semester 3</p>
-            </div>
-          </div>
+        <!-- Log 1: Exploring -->
+        <div class="bg-paper-bg border border-dingley/20 p-6 rounded-lg shadow-sm space-y-4">
+          <h3
+            class="font-serif text-lg font-bold text-pine-tree border-b border-dingley/20 pb-2 flex items-center justify-between">
+            <span>Currently Exploring</span>
+            <span class="text-pale-copper">✦</span>
+          </h3>
+          <ul class="space-y-3 text-sm text-kombu-green/90 font-medium">
+            <li class="flex items-start">
+              <span class="text-pale-copper mr-2">&bull;</span>
+              <span>NLP Engineering</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-pale-copper mr-2">&bull;</span>
+              <span>LLM Applications</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-pale-copper mr-2">&bull;</span>
+              <span>Open Source Contributions</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-pale-copper mr-2">&bull;</span>
+              <span>Backend Architecture</span>
+            </li>
+          </ul>
         </div>
 
-        <div class="ongoing-card" style="margin-top:24px;">
-          <div class="ongoing-label">🔬 Ongoing Project</div>
-          <div class="ongoing-name">Shield AI — Intrusion Detection System</div>
-          <div class="ongoing-desc">
-            Building an ML-based network intrusion detection system trained on the CIC-IDS2017 dataset, capable of
-            detecting network anomalies and DoS attacks in real-time across multiple model architectures.
-          </div>
+        <!-- Log 2: Recent Work -->
+        <div class="bg-paper-bg border border-dingley/20 p-6 rounded-lg shadow-sm space-y-4">
+          <h3
+            class="font-serif text-lg font-bold text-pine-tree border-b border-dingley/20 pb-2 flex items-center justify-between">
+            <span>Recent Work</span>
+            <span class="text-pale-copper">✦</span>
+          </h3>
+          <ul class="space-y-3 text-sm text-kombu-green/90 font-medium">
+            <li class="flex items-start">
+              <span class="text-pale-copper mr-2">&bull;</span>
+              <span>EduShield Enhancements</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-pale-copper mr-2">&bull;</span>
+              <span>NoteBloom v2 UI Refactor</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-pale-copper mr-2">&bull;</span>
+              <span>GitHub Commit Contributions</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-pale-copper mr-2">&bull;</span>
+              <span>Relational Schema Updates</span>
+            </li>
+          </ul>
         </div>
+
+        <!-- Log 3: Learning Journey -->
+        <div class="bg-paper-bg border border-dingley/20 p-6 rounded-lg shadow-sm space-y-4">
+          <h3
+            class="font-serif text-lg font-bold text-pine-tree border-b border-dingley/20 pb-2 flex items-center justify-between">
+            <span>Learning Journey</span>
+            <span class="text-pale-copper">✦</span>
+          </h3>
+          <ul class="space-y-3 text-sm text-kombu-green/90 font-medium">
+            <li class="flex items-start">
+              <span class="text-pale-copper mr-2">&bull;</span>
+              <span>FastAPI Endpoints</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-pale-copper mr-2">&bull;</span>
+              <span>AI Classifier Systems</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-pale-copper mr-2">&bull;</span>
+              <span>Cloud Storage Lifecycles</span>
+            </li>
+            <li class="flex items-start">
+              <span class="text-pale-copper mr-2">&bull;</span>
+              <span>PostgreSQL Optimization</span>
+            </li>
+          </ul>
+        </div>
+
       </div>
+
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-layout">
-      <div class="reveal">
-        <span class="sec-eyebrow">Contact</span>
-        <h2 class="sec-title">Let's build<br><em>something great</em> ✦</h2>
-        <p style="font-size:15px; color:var(--ink-soft); line-height:1.8; margin-bottom:8px;">
-          Open to internships, collaborations, freelance gigs, or just a good conversation about AI, systems, or tech.
-          Drop me a message — I'd love to hear from you.
+  <!-- ENGINEERING PRINCIPLES SECTION -->
+  <section id="principles" class="reveal max-w-5xl mx-auto px-6 py-20 space-y-12">
+    <div class="text-center space-y-2">
+      <span class="font-hand text-lg text-pale-copper tracking-wider font-semibold">How I Work</span>
+      <h2 class="font-serif text-4xl md:text-5xl font-bold tracking-tight text-pine-tree">Engineering Principles</h2>
+      <p class="text-sm text-kombu-green/70 max-w-sm mx-auto">Core guidelines I follow when architecting and building
+        software.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 select-text">
+
+      <!-- Principle 1 -->
+      <div
+        class="bg-paper-bg border border-dingley/20 p-6 rounded shadow-sm hover:shadow transition-shadow duration-200">
+        <h3 class="font-serif text-lg font-bold text-pine-tree mb-2 border-b border-dingley/20 pb-2">Clean APIs</h3>
+        <p class="text-xs text-kombu-green/80 leading-relaxed font-medium">
+          Designing self-documenting, type-safe REST endpoints that make frontend integrations smooth and intuitive.
         </p>
-        <div class="contact-links">
-          <a href="mailto:patilsamiksha179@gmail.com" class="c-link">
-            <div class="c-icon">📧</div>
-            patilsamiksha179@gmail.com
+      </div>
+
+      <!-- Principle 2 -->
+      <div
+        class="bg-paper-bg border border-dingley/20 p-6 rounded shadow-sm hover:shadow transition-shadow duration-200">
+        <h3 class="font-serif text-lg font-bold text-pine-tree mb-2 border-b border-dingley/20 pb-2">Scalable Systems
+        </h3>
+        <p class="text-xs text-kombu-green/80 leading-relaxed font-medium">
+          Optimizing relational database schemas, query indexing, and backend caching routines to handle active traffic
+          load.
+        </p>
+      </div>
+
+      <!-- Principle 3 -->
+      <div
+        class="bg-paper-bg border border-dingley/20 p-6 rounded shadow-sm hover:shadow transition-shadow duration-200">
+        <h3 class="font-serif text-lg font-bold text-pine-tree mb-2 border-b border-dingley/20 pb-2">User-Focused</h3>
+        <p class="text-xs text-kombu-green/80 leading-relaxed font-medium">
+          Framing UI features for speed, utility, and lightweight load metrics, prioritizing direct problem-solving.
+        </p>
+      </div>
+
+      <!-- Principle 4 -->
+      <div
+        class="bg-paper-bg border border-dingley/20 p-6 rounded shadow-sm hover:shadow transition-shadow duration-200">
+        <h3 class="font-serif text-lg font-bold text-pine-tree mb-2 border-b border-dingley/20 pb-2">Deep Learning</h3>
+        <p class="text-xs text-kombu-green/80 leading-relaxed font-medium">
+          Seeking a deep, fundamental domain understanding of machine learning algorithms, cloud pipelines, and systems
+          code.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="reveal max-w-2xl mx-auto px-6 py-20">
+
+    <!-- Letter Envelope Frame -->
+    <div class="bg-paper-bg border border-dingley/30 p-6 md:p-12 rounded-lg shadow-xl relative select-text">
+      <!-- Coffee cup sticker (top left corner) -->
+      <img src="assets/coffee.png" alt="coffee cup"
+        class="absolute -top-6 -left-8 w-20 h-auto select-none pointer-events-none z-20 md:block hidden">
+
+      <!-- Vintage stamp SVG sticker top right -->
+      <div class="absolute top-6 right-6 text-pale-copper/45 select-none hidden sm:block">
+        <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 100 100">
+          <rect x="15" y="15" width="70" height="70" fill="none" stroke="currentColor" stroke-width="4"
+            stroke-dasharray="4,4" />
+          <path d="M50,25 C45,45 35,50 15,60 C35,70 45,75 50,95 C55,75 65,70 85,60 C65,50 55,45 50,25 Z"
+            opacity="0.6" />
+        </svg>
+      </div>
+
+      <div class="space-y-6">
+        <div class="space-y-2">
+          <span class="font-hand text-lg text-pale-copper tracking-wider font-semibold">Get In Touch</span>
+          <h3 class="font-serif text-3xl font-bold tracking-tight text-pine-tree">
+            Interested in collaborating?
+          </h3>
+        </div>
+
+        <p class="text-sm md:text-base text-kombu-green/95 leading-relaxed">
+          I'm always open to discussing software engineering, AI systems, backend development, and open-source projects.
+          Drop me an email or check my networks below.
+        </p>
+
+        <!-- Stamped buttons for networks -->
+        <div class="flex flex-col space-y-3 border-t border-dingley/20 pt-6">
+          <a href="mailto:patilsamiksha179@gmail.com"
+            class="flex items-center space-x-3 text-sm font-semibold text-pine-tree hover:text-pale-copper transition-colors duration-150">
+            <span class="text-pale-copper">📧</span>
+            <span>patilsamiksha179@gmail.com</span>
           </a>
-          <a href="https://www.linkedin.com/in/sammmikshapatil" target="_blank" class="c-link">
-            <div class="c-icon">💼</div>
-            linkedin.com/in/sammmikshapatil
+          <a href="https://www.linkedin.com/in/sammmikshapatil" target="_blank"
+            class="flex items-center space-x-3 text-sm font-semibold text-pine-tree hover:text-pale-copper transition-colors duration-150">
+            <span class="text-pale-copper">💼</span>
+            <span>linkedin.com/in/sammmikshapatil</span>
           </a>
-          <a href="https://stock-analysis-2f871.web.app" target="_blank" class="c-link">
-            <div class="c-icon">📈</div>
-            StockAI — Live Project
+          <a href="https://github.com/sammmiksha" target="_blank"
+            class="flex items-center space-x-3 text-sm font-semibold text-pine-tree hover:text-pale-copper transition-colors duration-150">
+            <span class="text-pale-copper">🐙</span>
+            <span>github.com/sammmiksha</span>
           </a>
-          <a href="https://seva-setu-9a8e3.web.app/" target="_blank" class="c-link">
-            <div class="c-icon">🤝</div>
-            SevaSetu v2 — Live Project
-          </a>
-          <a href="https://github.com/sammmiksha" target="_blank" class="c-link">
-            <div class="c-icon">🐙</div>
-            github.com/sammmiksha
-          </a>
+        </div>
+
+        <!-- Signature area -->
+        <div class="pt-6 border-t border-dingley/20 flex justify-between items-center select-none relative">
+          <span class="text-xs text-dingley uppercase font-bold tracking-wide">Mumbai, India</span>
+          <div class="flex items-center space-x-1">
+            <span class="font-hand text-3xl text-pale-copper transform rotate-3">Samiksha Patil</span>
+            <!-- Silver star sticker near signature (scaled to 60px) -->
+            <img src="assets/sliverstar.png" alt="silver star sticker"
+              class="w-20 h-20 select-none  pointer-events-none">
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">samiksha<span> ✦</span></div>
-    <div>Made with focus &amp; a lot of caffeine ☕</div>
-    <div>© 2026 Samiksha Patil · All Rights Reserved</div>
+  <footer class="w-full bg-paper-dark border-t border-dingley/20 py-8 px-6 text-center select-text">
+    <div
+      class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-semibold text-kombu-green/70">
+      <div class="font-serif text-sm font-bold text-pine-tree">samiksha<span>✦</span></div>
+      <div>Made with focus &amp; high-quality tea 🍵</div>
+      <div>&copy; 2026 Samiksha Patil &bull; All Rights Reserved</div>
+    </div>
   </footer>
 
+  <!-- DYNAMIC PROJECT JOURNAL CORE ENGINE & INTERACTION HANDLERS -->
   <script>
-    // ── CURSOR — minimal dot, no sparkles ──
-    const dot = document.getElementById('dot');
-    document.addEventListener('mousemove', e => {
-      dot.style.left = e.clientX + 'px';
-      dot.style.top = e.clientY + 'px';
-    });
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-    });
+    // Project database
+    const projects = {
+      edushield: {
+        title: "EduShield",
+        tagline: "AI-Powered Academic Integrity Platform",
+        problem: "Manual checking of student submissions was slow, inconsistent, and highly vulnerable to unchecked AI plagiarism models.",
+        solution: "Built a multi-tenant classroom portal letting faculty manage student cohorts, trigger assignment runs, and evaluate submissions against ML text classifiers.",
+        impact: "Accelerated submission processing and analysis with a clean document indexing dashboard.",
+        builtWith: "React + FastAPI + PostgreSQL",
+        featuresCount: "8+",
+        roles: ["Authentication", "File Uploads", "AI Detection", "Role-Based Access"],
+        techStack: ["React.js", "FastAPI", "PostgreSQL", "AWS S3", "JWT API Guard", "Scikit-learn"],
+        features: [
+          "Role-based Student & Faculty dashboard systems",
+          "Secure AWS S3 programmatic document storage",
+          "Classroom group and cohort enrollment controls",
+          "Automated plagiarism and AI-generated content auditing",
+          "Fully documented backend REST endpoints"
+        ],
+        github: "https://github.com/sammmiksha",
+        demo: "#",
+        architecture: [
+          "React Frontend",
+          "FastAPI Backend",
+          "Authentication Layer (JWT)",
+          "PostgreSQL Database",
+          "AWS S3 Storage",
+          "AI Detection Pipeline"
+        ],
+        lessons: [
+          "Designed multi-part document chunk parsing scripts under memory caps.",
+          "Configured secure AWS temporary token authorizations for client uploads.",
+          "Wrote index optimizations on high-frequency PostgreSQL foreign key queries.",
+          "Engineered JWT security filters guarding student assignment submissions."
+        ]
+      },
+      stockai: {
+        title: "Stock Analysis",
+        tagline: "Intelligent Portfolio & Market Analytics",
+        problem: "Retail investors struggle to perform technical analysis and monitor portfolio holdings in a unified, distraction-free environment.",
+        solution: "An intelligent assistant for stock management, portfolio tracking, market insights, and predictive analysis. Designed to help users monitor holdings, analyze trends, and make informed investment decisions.",
+        impact: "Streamlines trailing indicator tracking and watchlists for active traders.",
+        builtWith: "React + FastAPI + Firebase",
+        featuresCount: "5+",
+        roles: ["Financial API integration", "Data Visualization", "User watchlists"],
+        techStack: ["React.js", "FastAPI", "yfinance API", "Firebase DB", "Recharts Engine"],
+        features: [
+          "Real-time historical price series parsing",
+          "Interactive line overlays mapping EMA indicators",
+          "Client watchlists synced to active account states",
+          "Modular financial ticker search logic"
+        ],
+        github: "https://github.com/sammmiksha",
+        demo: "https://stock-analysis-2f871.web.app",
+        architecture: [
+          "React Dashboard",
+          "FastAPI Services",
+          "Market Data Layer",
+          "Prediction Engine",
+          "Portfolio Analytics"
+        ],
+        lessons: [
+          "Integrated async backend cache pools preventing API rate limitation.",
+          "Calculated moving averages and RSI formulas dynamically in Python.",
+          "Handled asynchronous dataset mismatches inside Recharts rendering routines."
+        ]
+      },
+      notebloom: {
+        title: "NoteBloom",
+        tagline: "Customizable Study Notebook",
+        problem: "Existing online markdown notes are heavily cluttered and lack specialized visual formatting configs.",
+        solution: "Developed a pure client-side study notepad where writers set custom paper styles, line sizes, and ink choices.",
+        impact: "Reduced cognitive friction and provided a clean, distraction-free taking flow.",
+        builtWith: "HTML5 + CSS3 + Vanilla JS",
+        featuresCount: "6+",
+        roles: ["Canvas Customizer", "Auto-Save Engine", "UI/UX Styling"],
+        techStack: ["HTML5 Canvas", "CSS3 Custom Properties", "Vanilla JS Core", "Local Storage API"],
+        features: [
+          "Distraction-free focus writing canvases",
+          "Multi-document side panel control structures",
+          "Paper rule patterns (lines, dots, grid overrides)",
+          "Fully local client-side auto-save loops"
+        ],
+        github: "https://github.com/sammmiksha",
+        demo: "https://sammmiksha.github.io/notebloom",
+        architecture: [
+          "Frontend Workspace",
+          "Notebook Manager",
+          "Local Storage Engine",
+          "Writing System"
+        ],
+        lessons: [
+          "Managed client-side folder trees using nested JSON serialization.",
+          "Constructed responsive canvas backgrounds matching client browser margins.",
+          "Developed custom key-listener hooks for markdown auto-formatting."
+        ]
+      },
+      sevasetu: {
+        title: "SevaSetu v2",
+        tagline: "Community Volunteer Coordinator",
+        problem: "Local relief groups lack unified systems to match active supply seekers with localized helper squads.",
+        solution: "Created a coordinated, geographic mapping system synchronizing support seekers and volunteers during emergencies.",
+        impact: "Google Solution Challenge hackathon project demonstrating real-time resource allocations.",
+        builtWith: "React + Firebase",
+        featuresCount: "6+",
+        roles: ["Real-time Sync", "Team Hackathon", "User Dashboard Design"],
+        techStack: ["React.js", "Firebase Realtime DB", "Bootstrap CSS", "Geo-Coordinates API"],
+        features: [
+          "Real-time seeker help requirement broadcasts",
+          "Coordinate-based regional request lists",
+          "Volunteer validation and action progress updates",
+          "Secure user login and verification locks"
+        ],
+        github: "https://github.com/sammmiksha",
+        demo: "https://seva-setu-9a8e3.web.app/",
+        architecture: [
+          "User Portal",
+          "Firebase Services",
+          "Volunteer Matching",
+          "Community Requests"
+        ],
+        lessons: [
+          "Designed flat database structures optimizing real-time notification streams.",
+          "Configured fine-grained security rules preventing personal data leakage.",
+          "Built full coordinate-based sorting in a two-member hackathon timeline."
+        ]
+      }
+    };
 
-    // ── FLOATING BG STARS ──
-    const bgStars = document.getElementById('bgStars');
-    const starChars = ['✦', '★', '✸', '·'];
-    for (let i = 0; i < 14; i++) {
-      const s = document.createElement('div');
-      s.className = 'bg-star';
-      s.textContent = starChars[i % starChars.length];
-      s.style.left = Math.random() * 100 + 'vw';
-      s.style.animationDuration = (20 + Math.random() * 20) + 's';
-      s.style.animationDelay = (-Math.random() * 20) + 's';
-      bgStars.appendChild(s);
+    let isTransitioning = false;
+    let currentSpread = 0; // 0 to 8 spreads.
+
+    // ── Generate the book spreads dynamically on load ──
+    function initBook() {
+      // 1. Generate Left Base Content (Cover / Title Page)
+      document.getElementById('left-base-content').innerHTML = `
+        <div class="space-y-6 flex flex-col justify-center items-center h-full text-center p-4">
+          <span class="text-pale-copper font-serif text-lg tracking-wider font-semibold">Engineering Journal</span>
+          <h2 class="font-serif text-4xl font-bold tracking-tight text-pine-tree leading-tight">
+            Samiksha Patil
+          </h2>
+          <div class="w-16 h-0.5 bg-dingley/40"></div>
+          <p class="font-hand text-2xl text-dingley max-w-xs leading-relaxed">
+            A developer's personal journal documenting projects, learning, and technical growth.
+          </p>
+          <p class="text-[10px] text-kombu-green/60 tracking-wider uppercase font-semibold mt-4">
+            FastAPI Backend &bull; Full Stack &bull; AI Systems
+          </p>
+        </div>
+      `;
+
+      // 2. Generate Right Base Content (Page 16: SevaSetu Lessons)
+      document.getElementById('right-base-content').innerHTML = renderLessonsPage(projects.sevasetu, 16);
+
+      // 3. Generate Sheets 1 to 8
+      let sheetsHtml = '';
+
+      // Sheet 1: Front = Index Page, Back = EduShield Page 1 (Story)
+      sheetsHtml += renderSheet(1, renderIndexPage(), renderStoryPage(projects.edushield, 1));
+
+      // Sheet 2: Front = EduShield Page 2 (Details), Back = EduShield Page 3 (Arch)
+      sheetsHtml += renderSheet(2, renderDetailsPage(projects.edushield, 2, 2), renderArchPage(projects.edushield, 3, 1));
+
+      // Sheet 3: Front = EduShield Page 4 (Lessons), Back = Stock Analysis Page 5 (Story)
+      sheetsHtml += renderSheet(3, renderLessonsPage(projects.edushield, 4), renderStoryPage(projects.stockai, 5));
+
+      // Sheet 4: Front = Stock Analysis Page 6 (Details), Back = Stock Analysis Page 7 (Arch)
+      sheetsHtml += renderSheet(4, renderDetailsPage(projects.stockai, 6, 4), renderArchPage(projects.stockai, 7, 3));
+
+      // Sheet 5: Front = Stock Analysis Page 8 (Lessons), Back = NoteBloom Page 9 (Story)
+      sheetsHtml += renderSheet(5, renderLessonsPage(projects.stockai, 8), renderStoryPage(projects.notebloom, 9));
+
+      // Sheet 6: Front = NoteBloom Page 10 (Details), Back = NoteBloom Page 11 (Arch)
+      sheetsHtml += renderSheet(6, renderDetailsPage(projects.notebloom, 10, 6), renderArchPage(projects.notebloom, 11, 5));
+
+      // Sheet 7: Front = NoteBloom Page 12 (Lessons), Back = SevaSetu Page 13 (Story)
+      sheetsHtml += renderSheet(7, renderLessonsPage(projects.notebloom, 12), renderStoryPage(projects.sevasetu, 13));
+
+      // Sheet 8: Front = SevaSetu Page 14 (Details), Back = SevaSetu Page 15 (Arch)
+      sheetsHtml += renderSheet(8, renderDetailsPage(projects.sevasetu, 14, 8), renderArchPage(projects.sevasetu, 15, 7));
+
+      document.getElementById('book-sheets-container').innerHTML = sheetsHtml;
+
+      updateTabHighlights();
+      populateMobileLayout('edushield');
     }
 
-    // ── SCROLL REVEAL ──
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    function renderSheet(index, frontHtml, backHtml) {
+      let frontLeftLabel = "";
+      let frontRightLabel = "";
+      if (index === 1) {
+        frontLeftLabel = "";
+        frontRightLabel = "PROJECT DIRECTORY";
+      } else {
+        frontLeftLabel = `Page ${index * 2 - 2}`;
+        frontRightLabel = (index % 2 === 0) ? "Engineering Details" : "Lessons Learned";
+      }
 
-    // ── SKILL BARS ──
-    document.querySelectorAll('.bar-fill').forEach(b => {
-      b.style.width = (parseFloat(b.dataset.w) * 100) + '%';
-    });
-    const barObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.querySelectorAll('.bar-fill').forEach(b => b.classList.add('go'));
+      let backLeftLabel = (index % 2 === 1) ? "Story & Context" : "System Design";
+      let backRightLabel = `Page ${index * 2 - 1}`;
+
+      return `
+        <div id="sheet-${index}" class="sheet absolute top-0 right-0 w-1/2 h-full transform-origin-left transform-style-3d transition-transform duration-[800ms] select-text pointer-events-auto" style="--index: ${index}; z-index: ${45 - index};">
+          <!-- FRONT SIDE -->
+          <div onclick="handlePageClick(event, 'next')" class="absolute inset-0 bg-paper-bg rounded-r-lg border-l border-dingley/20 shadow-xl p-8 backface-hidden flex flex-col justify-between border-y border-r border-dingley/10 cursor-e-resize">
+            <div class="absolute right-3 bottom-3 text-dingley/40 animate-pulse font-bold select-none pointer-events-none text-sm z-30">→</div>
+            ${frontHtml}
+            <div class="text-xs text-dingley font-semibold tracking-wide uppercase select-none border-t border-dingley/10 pt-2 flex justify-between">
+              <span>${frontLeftLabel}</span>
+              <span>${frontRightLabel}</span>
+            </div>
+          </div>
+          <!-- BACK SIDE -->
+          <div onclick="handlePageClick(event, 'prev')" class="absolute inset-0 bg-paper-bg rounded-l-lg border-r border-dingley/20 shadow-xl p-8 backface-hidden rotateY-180 flex flex-col justify-between border-y border-l border-dingley/10 cursor-w-resize">
+            <div class="absolute left-3 bottom-3 text-dingley/40 animate-pulse font-bold select-none pointer-events-none text-sm z-30">←</div>
+            ${backHtml}
+            <div class="text-xs text-dingley font-semibold tracking-wide uppercase select-none border-t border-dingley/10 pt-2 flex justify-between">
+              <span>${backLeftLabel}</span>
+              <span>${backRightLabel}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderIndexPage() {
+      return `
+        <div class="space-y-6 flex flex-col justify-between h-full select-text">
+          <div class="space-y-4">
+            <span class="font-serif text-xs text-pale-copper tracking-wider font-semibold uppercase">Directory</span>
+            <h3 class="font-serif text-3xl font-bold text-pine-tree leading-tight">Project Index</h3>
+            
+            <div class="space-y-3 pt-2">
+              <button onclick="goToSpread(1)" class="w-full flex items-center justify-between text-left border-b border-dingley/20 pb-2 hover:text-pale-copper transition-colors duration-150">
+                <span class="font-serif font-bold text-sm">1. EduShield</span>
+                <span class="text-xs text-kombu-green/60">Page 1 - 4</span>
+              </button>
+              
+              <button onclick="goToSpread(3)" class="w-full flex items-center justify-between text-left border-b border-dingley/20 pb-2 hover:text-pale-copper transition-colors duration-150">
+                <span class="font-serif font-bold text-sm">2. Stock Analysis</span>
+                <span class="text-xs text-kombu-green/60">Page 5 - 8</span>
+              </button>
+              
+              <button onclick="goToSpread(5)" class="w-full flex items-center justify-between text-left border-b border-dingley/20 pb-2 hover:text-pale-copper transition-colors duration-150">
+                <span class="font-serif font-bold text-sm">3. NoteBloom</span>
+                <span class="text-xs text-kombu-green/60">Page 9 - 12</span>
+              </button>
+              
+              <button onclick="goToSpread(7)" class="w-full flex items-center justify-between text-left border-b border-dingley/20 pb-2 hover:text-pale-copper transition-colors duration-150">
+                <span class="font-serif font-bold text-sm">4. SevaSetu</span>
+                <span class="text-xs text-kombu-green/60">Page 13 - 16</span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="pt-3 flex border-t border-dingley/10">
+            <button onclick="goToSpread(1)" class="px-6 py-2 bg-pine-tree text-paper-bg rounded font-semibold text-xs hover:bg-kombu-green transition-all shadow-sm ml-auto">Browse Journal &rarr;</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderStoryPage(data, pageNum) {
+      return `
+        <div class="space-y-4">
+          <span class="font-serif text-xs text-pale-copper tracking-wider font-semibold uppercase">Project Story</span>
+          <h3 class="font-serif text-3xl font-bold text-pine-tree leading-tight">${data.title}</h3>
+          <p class="text-xs font-semibold text-dingley uppercase tracking-wider">${data.tagline}</p>
+          <div class="space-y-3 pt-2">
+            <div class="space-y-1">
+              <span class="text-xs uppercase font-bold text-pine-tree/50">Problem</span>
+              <p class="text-xs text-kombu-green/90 leading-relaxed font-medium">${data.problem}</p>
+            </div>
+            <div class="space-y-1">
+              <span class="text-xs uppercase font-bold text-pine-tree/50">Solution</span>
+              <p class="text-xs text-kombu-green/90 leading-relaxed font-medium">${data.solution}</p>
+            </div>
+            <div class="space-y-1">
+              <span class="text-xs uppercase font-bold text-pine-tree/50">Impact</span>
+              <p class="text-xs text-kombu-green/90 leading-relaxed font-medium">${data.impact}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderDetailsPage(data, pageNum, nextSpreadIndex) {
+      let techTags = data.techStack.map(t => `<span class="bg-paper-dark border border-dingley/20 px-2 py-0.5 rounded text-[10px] font-semibold text-pine-tree">${t}</span>`).join(' ');
+      let featList = data.features.map(f => `<li class="flex items-start text-xs text-kombu-green/90 font-medium"><span class="text-pale-copper mr-2">&bull;</span><span>${f}</span></li>`).join('');
+      let roleTags = data.roles.map(r => `<span class="bg-dingley/10 text-dingley px-2 py-0.5 rounded text-[10px] font-semibold">${r}</span>`).join(' ');
+
+      return `
+        <div class="space-y-4 flex flex-col justify-between h-full">
+          <div class="space-y-3">
+            <span class="font-serif text-xs text-pale-copper tracking-wider font-semibold uppercase">Engineering Details</span>
+            <div class="flex flex-wrap gap-1.5 pt-1">${techTags}</div>
+            
+            <div class="space-y-2 pt-2">
+              <span class="text-xs uppercase font-bold text-pine-tree/50">Key Features</span>
+              <ul class="space-y-1.5">${featList}</ul>
+            </div>
+          </div>
+
+          <div class="border-t border-dingley/10 pt-3 space-y-2">
+            <div class="grid grid-cols-2 gap-2 text-[11px] font-semibold text-kombu-green/90">
+              <div><span class="text-pine-tree/50 block text-[9px] uppercase">Built With</span>${data.builtWith}</div>
+              <div><span class="text-pine-tree/50 block text-[9px] uppercase">Feature count</span>${data.featuresCount}</div>
+            </div>
+            <div>
+              <span class="text-pine-tree/50 block text-[9px] uppercase font-semibold mb-1">Key Developer Roles</span>
+              <div class="flex flex-wrap gap-1">${roleTags}</div>
+            </div>
+            <div class="flex space-x-3 pt-2">
+              <a href="${data.github}" target="_blank" class="px-4 py-1.5 bg-pine-tree text-paper-bg rounded font-semibold text-xs hover:bg-kombu-green transition-all shadow-sm">GitHub</a>
+              ${data.demo !== '#' ? `<a href="${data.demo}" target="_blank" class="px-4 py-1.5 bg-pale-copper text-paper-bg rounded font-semibold text-xs hover:bg-[#b0745b] transition-all shadow-sm">Live Site</a>` : ''}
+              <button onclick="goToSpread(${nextSpreadIndex})" class="px-4 py-1.5 border border-dingley text-pine-tree rounded font-semibold text-xs hover:bg-paper-dark transition-all ml-auto">Read Architecture &rarr;</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderArchPage(data, pageNum, prevSpreadIndex) {
+      let archFlow = data.architecture.map((a, idx) => {
+        let arrow = idx < data.architecture.length - 1 ? `<div class="text-center py-0.5 text-dingley/70 text-[10px] font-bold select-none">&darr;</div>` : '';
+        return `
+          <div class="flex flex-col items-center">
+            <div class="w-full bg-paper-dark border border-dingley/35 rounded py-1.5 px-3 text-center shadow-sm">
+              <div class="text-[11px] font-semibold text-pine-tree">${a}</div>
+            </div>
+            ${arrow}
+          </div>
+        `;
+      }).join('');
+
+      return `
+        <div class="space-y-3 flex flex-col justify-between h-full">
+          <div class="space-y-2 flex-grow">
+            <span class="font-serif text-xs text-pale-copper tracking-wider font-semibold uppercase">System Architecture</span>
+            <div class="space-y-1.5 max-w-sm mx-auto pt-2">${archFlow}</div>
+          </div>
+          <div class="pt-2 border-t border-dingley/10 flex">
+            <button onclick="goToSpread(${prevSpreadIndex})" class="px-4 py-1.5 border border-dingley text-pine-tree rounded font-semibold text-xs hover:bg-paper-dark transition-all">&larr; Back</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderLessonsPage(data, pageNum) {
+      let lessonList = data.lessons.map(l => `<li class="flex items-start text-xs text-kombu-green/90 font-medium"><span class="text-pale-copper mr-2">&bull;</span><span>${l}</span></li>`).join('');
+      return `
+        <div class="space-y-4">
+          <span class="font-serif text-xs text-pale-copper tracking-wider font-semibold uppercase">Lessons &amp; Challenges</span>
+          <ul class="space-y-3 pt-2">${lessonList}</ul>
+        </div>
+      `;
+    }
+
+    // Dynamic transition selector
+    function selectProject(key) {
+      let targetSpread = 1;
+      if (key === 'edushield') targetSpread = 1;
+      else if (key === 'stockai') targetSpread = 3;
+      else if (key === 'notebloom') targetSpread = 5;
+      else if (key === 'sevasetu') targetSpread = 7;
+
+      if (window.innerWidth >= 768) {
+        // Turn pages instantly to avoid weird reverse cascade flips when clicking tabs
+        currentSpread = targetSpread;
+        for (let i = 1; i <= 8; i++) {
+          const sheet = document.getElementById(`sheet-${i}`);
+          if (sheet) {
+            sheet.style.transition = 'none';
+            flipSheet(i, i <= targetSpread);
+            sheet.offsetHeight; // trigger reflow
+            sheet.style.transition = 'transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)';
+          }
+        }
+        updateTabHighlights();
+      } else {
+        // Mobile direct toggle
+        currentSpread = targetSpread;
+        // Shift sheets
+        for (let i = 1; i <= 8; i++) {
+          flipSheet(i, i <= targetSpread);
+        }
+        updateTabHighlights();
+        populateMobileLayout(key);
+      }
+    }
+
+    // Browsing animation queue
+    function goToSpread(targetSpread) {
+      if (isTransitioning) return;
+      if (targetSpread === currentSpread) return;
+
+      isTransitioning = true;
+      const delay = 150; // milliseconds per flip for cascade effect
+
+      function step() {
+        if (currentSpread < targetSpread) {
+          currentSpread++;
+          flipSheet(currentSpread, true);
+          setTimeout(step, delay);
+        } else if (currentSpread > targetSpread) {
+          flipSheet(currentSpread, false);
+          currentSpread--;
+          setTimeout(step, delay);
+        } else {
+          isTransitioning = false;
+          updateTabHighlights();
+        }
+      }
+      step();
+    }
+
+    // Toggle physical sheet rotation
+    function flipSheet(index, flip) {
+      const sheet = document.getElementById(`sheet-${index}`);
+      if (!sheet) return;
+      if (flip) {
+        sheet.classList.add('flipped');
+        sheet.style.transform = 'rotateY(-180deg)';
+        sheet.style.webkitTransform = 'rotateY(-180deg)';
+        sheet.style.zIndex = (30 + index).toString();
+      } else {
+        sheet.classList.remove('flipped');
+        sheet.style.transform = 'rotateY(0deg)';
+        sheet.style.webkitTransform = 'rotateY(0deg)';
+        sheet.style.zIndex = (45 - index).toString();
+      }
+    }
+
+    // Sync highlights on folder tabs
+    function updateTabHighlights() {
+      const tabKeys = ['edushield', 'stockai', 'notebloom', 'sevasetu'];
+      let activeKey = null;
+
+      if (currentSpread >= 1 && currentSpread <= 2) activeKey = 'edushield';
+      else if (currentSpread >= 3 && currentSpread <= 4) activeKey = 'stockai';
+      else if (currentSpread >= 5 && currentSpread <= 6) activeKey = 'notebloom';
+      else if (currentSpread >= 7 && currentSpread <= 8) activeKey = 'sevasetu';
+
+      tabKeys.forEach(k => {
+        const tab = document.getElementById(`tab-proj-${k}`);
+        if (!tab) return;
+        if (k === activeKey) {
+          tab.classList.add('active-tab');
+        } else {
+          tab.classList.remove('active-tab');
+        }
       });
-    }, { threshold: 0.3 });
-    document.querySelectorAll('.skill-bars').forEach(el => barObs.observe(el));
+    }
+
+    // Populate Mobile stacked cards
+    function populateMobileLayout(key) {
+      const data = projects[key];
+      if (!data) return;
+
+      let techTags = data.techStack.map(t => `<span class="bg-paper-dark border border-dingley/20 px-2 py-0.5 rounded text-[10px] font-semibold text-pine-tree">${t}</span>`).join(' ');
+      let featList = data.features.map(f => `<li class="flex items-start text-xs text-kombu-green/90 font-medium"><span class="text-pale-copper mr-2">&bull;</span><span>${f}</span></li>`).join('');
+      let roleTags = data.roles.map(r => `<span class="bg-dingley/10 text-dingley px-2 py-0.5 rounded text-[10px] font-semibold">${r}</span>`).join(' ');
+
+      let archFlow = data.architecture.map((a, idx) => {
+        let arrow = idx < data.architecture.length - 1 ? `<div class="text-center py-1.5 text-dingley/70 text-sm font-bold select-none">&darr;</div>` : '';
+        return `
+          <div class="flex flex-col items-center">
+            <div class="w-full bg-paper-dark border border-dingley/30 rounded py-2 px-3 text-center shadow-sm">
+              <div class="text-xs font-semibold text-pine-tree">${a}</div>
+            </div>
+            ${arrow}
+          </div>
+        `;
+      }).join('');
+
+      let lessonList = data.lessons.map(l => `<li class="flex items-start text-xs text-kombu-green/90 font-medium"><span class="text-pale-copper mr-2">&bull;</span><span>${l}</span></li>`).join('');
+
+      document.getElementById('mobile-story').innerHTML = `
+        <span class="font-serif text-[10px] text-pale-copper tracking-wider font-bold uppercase">Project Overview</span>
+        <h3 class="font-serif text-2xl font-bold text-pine-tree leading-tight">${data.title}</h3>
+        <p class="text-[11px] font-semibold text-dingley uppercase tracking-wider">${data.tagline}</p>
+        <div class="space-y-3 mt-4">
+          <div class="space-y-0.5">
+            <span class="text-[10px] uppercase font-bold text-pine-tree/50">Problem</span>
+            <p class="text-sm text-kombu-green/90 leading-relaxed font-medium">${data.problem}</p>
+          </div>
+          <div class="space-y-0.5">
+            <span class="text-[10px] uppercase font-bold text-pine-tree/50">Solution</span>
+            <p class="text-sm text-kombu-green/90 leading-relaxed font-medium">${data.solution}</p>
+          </div>
+          <div class="space-y-0.5">
+            <span class="text-[10px] uppercase font-bold text-pine-tree/50">Impact</span>
+            <p class="text-sm text-kombu-green/90 leading-relaxed font-medium">${data.impact}</p>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('mobile-details').innerHTML = `
+        <span class="font-serif text-[10px] text-pale-copper tracking-wider font-bold uppercase">Engineering Details</span>
+        <div class="flex flex-wrap gap-1.5 pt-2">${techTags}</div>
+        <div class="space-y-3 mt-4">
+          <div>
+            <span class="text-[10px] uppercase font-bold text-pine-tree/50">Key Features</span>
+            <ul class="space-y-1.5 mt-2">${featList}</ul>
+          </div>
+          <div class="border-t border-dingley/10 pt-3 space-y-2">
+            <div class="grid grid-cols-2 gap-2 text-xs font-semibold text-kombu-green/90">
+              <div><span class="text-pine-tree/50 block text-[9px] uppercase">Built With</span>${data.builtWith}</div>
+              <div><span class="text-pine-tree/50 block text-[9px] uppercase">Feature count</span>${data.featuresCount}</div>
+            </div>
+            <div>
+              <span class="text-pine-tree/50 block text-[9px] uppercase font-semibold mb-1">Key Developer Roles</span>
+              <div class="flex flex-wrap gap-1">${roleTags}</div>
+            </div>
+            <div class="flex space-x-3 pt-3">
+              <a href="${data.github}" target="_blank" class="px-4 py-2 bg-pine-tree text-paper-bg rounded font-semibold text-xs hover:bg-kombu-green transition-all shadow-sm">GitHub</a>
+              ${data.demo !== '#' ? `<a href="${data.demo}" target="_blank" class="px-4 py-2 bg-pale-copper text-paper-bg rounded font-semibold text-xs hover:bg-[#b0745b] transition-all shadow-sm">Live Site</a>` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('mobile-arch').innerHTML = `
+        <span class="font-serif text-[10px] text-pale-copper tracking-wider font-bold uppercase">System Architecture</span>
+        <div class="space-y-2 mt-4">${archFlow}</div>
+      `;
+
+      document.getElementById('mobile-lessons').innerHTML = `
+        <span class="font-serif text-[10px] text-pale-copper tracking-wider font-bold uppercase">Lessons &amp; Challenges</span>
+        <ul class="space-y-3 mt-4">${lessonList}</ul>
+      `;
+    }
+
+    function nextPage() {
+      if (isTransitioning) return;
+      if (currentSpread < 8) {
+        goToSpread(currentSpread + 1);
+      }
+    }
+
+    function previousPage() {
+      if (isTransitioning) return;
+      if (currentSpread > 0) {
+        goToSpread(currentSpread - 1);
+      }
+    }
+
+    function handlePageClick(e, direction) {
+      if (e.target.closest('a') || e.target.closest('button')) {
+        return;
+      }
+      if (direction === 'next') {
+        nextPage();
+      } else {
+        previousPage();
+      }
+    }
+
+    // Auto-init spreads on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      initBook();
+    });
   </script>
+
+  <!-- OTHER INTERACTION HANDLERS -->
+  <script>
+    // ── MOBILE MENU TOGGLE ──
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('hamburger-icon');
+
+    menuBtn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      if (menu.classList.contains('hidden')) {
+        icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+      } else {
+        icon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+      }
+    });
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        icon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+      });
+    });
+
+    // ── TABS INVENTORY SWITCHING (FRONTEND/BACKEND/CLOUD/AI) ──
+    function switchTab(tabId) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.add('hidden'));
+
+      const buttons = document.querySelectorAll('#tech-stack button');
+      buttons.forEach(tab => tab.classList.remove('active-tab'));
+
+      document.getElementById(`content-${tabId}`).classList.remove('hidden');
+      document.getElementById(`tab-${tabId}`).classList.add('active-tab');
+    }
+
+    // ── SCROLL REVEAL OBSERVER ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      revealObserver.observe(el);
+    });
+  </script>
+
 </body>
 
 </html>

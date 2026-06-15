@@ -10,16 +10,23 @@
     rel="stylesheet">
   <style>
     :root {
-      --blush: #F3CCDE;
-      --lilac: #D6A8C4;
-      --mauve: #BA88AE;
-      --plum: #9E6899;
-      --deep: #5B3765;
-      --white: #FDF8FC;
-      --soft-bg: #FAF0F6;
-      --ink: #2D1B36;
-      --ink-soft: #6B4C7A;
-      --star: #E8C4F0;
+      --blush: #F8E5E5;         /* Soft Blush */
+      --lilac: #CABEFF;         /* Periwinkle */
+      --mauve: #F5A4A4;         /* Powder Blush */
+      --plum: #CE884A;          /* Golden Chestnut */
+      --deep: #5D4241;          /* Chocolate Plum */
+      --white: #FFFDFE;
+      --soft-bg: #FCFAF6;       /* Warm light paper background */
+      --ink: #352221;           /* Deep Chocolate Plum */
+      --ink-soft: #705958;      /* Muted Lavender Grey / Plum */
+      --star: #ECFF81;          /* Lime Cream */
+      
+      /* Additional variables for redesign */
+      --lime: #ECFF81;
+      --periwinkle-light: #D2C6FD;
+      --lavender-grey: #897EAA;
+      --taupe: #A79388;
+      --powder-blue: #B3C4E8;
     }
 
     *,
@@ -37,6 +44,10 @@
     body {
       font-family: 'Nunito', sans-serif;
       background: var(--soft-bg);
+      background-image: 
+        linear-gradient(to right, rgba(137, 126, 170, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(137, 126, 170, 0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
       color: var(--ink);
       overflow-x: hidden;
       cursor: default;
@@ -431,15 +442,154 @@
     }
 
     @keyframes wobble {
-
       0%,
       100% {
         transform: rotate(-10deg)
       }
-
       50% {
         transform: rotate(10deg)
       }
+    }
+
+    /* ── NEW COZY / TECHY STYLES ── */
+    .ide-window {
+      background: var(--deep);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(93, 66, 65, 0.22);
+      border: 2px solid rgba(206, 136, 74, 0.2);
+      width: 100%;
+      height: 400px;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    
+    .ide-window:hover {
+      transform: scale(1.02);
+    }
+    
+    .ide-header {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .ide-dots {
+      display: flex;
+      gap: 6px;
+    }
+    
+    .ide-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .ide-dot.red { background: #FF5F56; }
+    .ide-dot.yellow { background: #FFBD2E; }
+    .ide-dot.green { background: #27C93F; }
+    
+    .ide-title {
+      margin-left: auto;
+      margin-right: auto;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    
+    .ide-body {
+      width: 100%;
+      height: calc(100% - 35px);
+      position: relative;
+    }
+    
+    .ide-body img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.95;
+    }
+
+    /* Polaroid photo frame */
+    .polaroid-frame {
+      background: #FFFDFE;
+      padding: 16px 16px 48px 16px;
+      border-radius: 2px;
+      box-shadow: 0 16px 40px rgba(93, 66, 65, 0.15);
+      border: 1px solid rgba(137, 126, 170, 0.15);
+      transform: rotate(-3deg);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    
+    .polaroid-frame::after {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%) rotate(2deg);
+      width: 80px;
+      height: 24px;
+      background: rgba(202, 190, 255, 0.25);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    }
+    
+    .polaroid-frame:hover {
+      transform: rotate(1deg) translateY(-8px);
+      box-shadow: 0 22px 50px rgba(93, 66, 65, 0.2);
+    }
+    
+    .polaroid-image {
+      width: 100%;
+      aspect-ratio: 1.05;
+      object-fit: cover;
+      border: 1px solid rgba(137, 126, 170, 0.1);
+      margin-bottom: 16px;
+    }
+    
+    .polaroid-caption {
+      font-family: 'Gowun Batang', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--deep);
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    /* Cozy post-it sticky notes */
+    .postit-note {
+      background: var(--lime);
+      color: var(--deep);
+      padding: 18px;
+      border-radius: 4px;
+      box-shadow: 3px 6px 16px rgba(93, 66, 65, 0.08);
+      transform: rotate(2deg);
+      font-weight: 700;
+      font-size: 13px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border-left: 5px solid rgba(93, 66, 65, 0.12);
+      text-align: left;
+    }
+    
+    .postit-note:nth-child(2n) {
+      background: var(--blush);
+      transform: rotate(-2.5deg);
+    }
+    
+    .postit-note:nth-child(3n) {
+      background: rgba(202, 190, 255, 0.35);
+      border-color: rgba(202, 190, 255, 0.6);
+      transform: rotate(1.5deg);
+    }
+    
+    .postit-note:hover {
+      transform: scale(1.06) rotate(0deg);
+      box-shadow: 5px 12px 24px rgba(93, 66, 65, 0.12);
     }
 
     /* ── SECTIONS SHARED ── */
@@ -1236,44 +1386,58 @@
       <div class="hero-tag"><span class="live-dot"></span> Open to Internships &amp; Collabs</div>
       <h1 class="hero-name">Samiksha Patil</h1>
       <p class="hero-desc">
-        Building production-ready web apps with React, FastAPI &amp; PostgreSQL —
-        with AI-driven features woven into everything I make. Based in Mumbai, India.
+        BSc Information Technology student at Mumbai University. Building production-ready web apps with React, FastAPI &amp; PostgreSQL — with AI-driven features woven into everything I make. Based in Mumbai, India.
       </p>
       <div class="hero-vibes">
         <span class="vibe-tag purple">📚 BSc IT '26</span>
-        <span class="vibe-tag">🤖 AI Enthusiast</span>
-        <span class="vibe-tag mauve">☁️ Cloud Explorer</span>
-        <span class="vibe-tag">🔐 Cybersecurity Interest</span>
+        <span class="vibe-tag">🤖 AI-Integrated Systems</span>
+        <span class="vibe-tag mauve">⚙️ Backend &amp; APIs</span>
+        <span class="vibe-tag">☁️ Cloud &amp; Databases</span>
         <span class="vibe-tag purple">🚀 Builder Mindset</span>
       </div>
       <div class="hero-btns">
         <a href="#projects" class="btn-main">View Projects ✦</a>
-        <a href="https://www.linkedin.com/in/sammmikshapatil" class="btn-ghost">LinkedIn →</a>
+        <a href="https://www.linkedin.com/in/sammmikshapatil" target="_blank" class="btn-ghost">LinkedIn →</a>
       </div>
     </div>
 
     <div class="hero-right">
+      <!-- IDE Editor Window carrying the working portrait -->
+      <div class="ide-window">
+        <div class="ide-header">
+          <div class="ide-dots">
+            <div class="ide-dot red"></div>
+            <div class="ide-dot yellow"></div>
+            <div class="ide-dot green"></div>
+          </div>
+          <div class="ide-title">samiksha_patil.py</div>
+        </div>
+        <div class="ide-body">
+          <img src="assets/portrait_working.jpg" alt="Samiksha Patil working at desk">
+        </div>
+      </div>
+
       <div class="bubble-card bc-1">
         <span class="bc-emoji">🎓</span>
-        <div class="bc-label">Current CGPA</div>
-        <div class="bc-val">9.2</div>
-        <div class="bc-sub">BSc IT · Sem 5</div>
+        <div class="bc-label">Academic CGPI</div>
+        <div class="bc-val">9.15</div>
+        <div class="bc-sub">Sem 6: 9.8 / 10</div>
       </div>
       <div class="bubble-card bc-2">
-        <div class="bc-label" style="color:var(--deep);">Status</div>
-        <div class="bc-val" style="font-size:18px; color:var(--deep); line-height:1.4;">Building &amp; Shipping ✦</div>
-        <div class="bc-sub" style="color:var(--deep);opacity:0.7;">React · FastAPI · AWS</div>
+        <div class="bc-label" style="color:var(--deep);">Current Focus</div>
+        <div class="bc-val" style="font-size:18px; color:var(--deep); line-height:1.4;">Full-Stack &amp; AI</div>
+        <div class="bc-sub" style="color:var(--deep);opacity:0.7;">FastAPI · React · LLMs</div>
       </div>
       <div class="bubble-card bc-3">
         <span class="bc-emoji">🚀</span>
         <div class="bc-label">Projects Live</div>
-        <div class="bc-val">03</div>
-        <div class="bc-sub">EduShield · StockAI · SevaSetu</div>
+        <div class="bc-val">04</div>
+        <div class="bc-sub">EduShield · StockAI · NoteBloom · SevaSetu</div>
       </div>
       <div class="bubble-card bc-4">
-        <div class="bc-label" style="color:var(--blush);">Currently Working On</div>
-        <div class="bc-val" style="font-size:18px; line-height:1.4;">🔬 Shield AI — IDS</div>
-        <div class="bc-sub" style="color:var(--blush);opacity:0.7;">ML · CIC-IDS2017 dataset</div>
+        <div class="bc-label" style="color:var(--blush);">Currently Learning</div>
+        <div class="bc-val" style="font-size:16px; line-height:1.4;">NLP Engineering</div>
+        <div class="bc-sub" style="color:var(--blush);opacity:0.7;">LLMs &amp; Machine Learning</div>
       </div>
       <div class="float-star-deco" style="top:10px;right:80px;">✦</div>
       <div class="float-star-deco" style="bottom:130px;left:80px;animation-delay:0.8s;font-size:16px;">★</div>
@@ -1285,24 +1449,9 @@
   <section id="about">
     <div class="about-grid">
       <div class="reveal">
-        <div class="about-photo-card">
-          <div class="about-avatar">🌸</div>
-          <div class="about-name-card">Samiksha Patil</div>
-          <div class="about-loc">📍 Mumbai, India</div>
-          <div class="about-stat-row">
-            <div class="about-stat">
-              <div class="about-stat-num">9.2</div>
-              <div class="about-stat-lbl">CGPA</div>
-            </div>
-            <div class="about-stat">
-              <div class="about-stat-num">03</div>
-              <div class="about-stat-lbl">Projects</div>
-            </div>
-            <div class="about-stat">
-              <div class="about-stat-num">6+</div>
-              <div class="about-stat-lbl">Tech Stack</div>
-            </div>
-          </div>
+        <div class="polaroid-frame">
+          <img class="polaroid-image" src="assets/portrait_cozy.jpg" alt="Samiksha Patil - Cozy Vibes Portrait">
+          <div class="polaroid-caption">good vibes ✦</div>
         </div>
       </div>
       <div class="reveal" style="transition-delay:0.1s">
@@ -1313,18 +1462,18 @@
           production-ready systems. Whether it's building an AI plagiarism detection platform, a stock analysis engine,
           or a volunteer matching app, I care deeply about building things that actually work and feel great to use.
           <br><br>
-          I specialize in React, FastAPI, and PostgreSQL, with a growing interest in AI/ML integration and cloud
-          infrastructure. My CGPA of 9.2 reflects the dedication I put into both learning and building.
+          I specialize in React, FastAPI, and PostgreSQL, with a growing interest in AI/ML integration, NLP (Natural Language Processing) engineering, and cloud
+          infrastructure. My CGPI of 9.15 (with a Semester 6 GPA of 9.8) reflects the dedication I put into both learning and building.
         </p>
-        <div class="personal-section">
+        <div class="personal-section" style="background:transparent; border:none; padding:0; margin-top:28px;">
           <div class="personal-title">✦ Beyond Code</div>
           <div class="personal-tags">
-            <span class="p-tag">📖 Avid reader</span>
-            <span class="p-tag">🎵 Music while coding</span>
-            <span class="p-tag">🧩 Problem-solving</span>
-            <span class="p-tag">✏️ Note-taker &amp; documenter</span>
-            <span class="p-tag">🌐 Open-source curious</span>
-            <span class="p-tag">☕ Tea person</span>
+            <div class="postit-note">📖 Avid reader</div>
+            <div class="postit-note">🎵 Music while coding</div>
+            <div class="postit-note">🧩 Problem-solving</div>
+            <div class="postit-note">✏️ Note-taker &amp; writer</div>
+            <div class="postit-note">🌐 Open-source curious</div>
+            <div class="postit-note">☕ Tea person</div>
           </div>
         </div>
       </div>
@@ -1339,49 +1488,67 @@
         <h2 class="sec-title">Tools I<br><em>love</em> ✦</h2>
         <div style="margin-top:36px;">
           <div class="skill-category">
-            <div class="skill-cat-name">Frontend</div>
+            <div class="skill-cat-name">Languages</div>
             <div class="skill-tags">
-              <span class="s-tag">React.js</span>
-              <span class="s-tag">Tailwind CSS</span>
-              <span class="s-tag">HTML5</span>
-              <span class="s-tag">CSS3</span>
+              <span class="s-tag">Python</span>
+              <span class="s-tag">JavaScript</span>
+              <span class="s-tag">SQL</span>
+              <span class="s-tag">Java</span>
+              <span class="s-tag">C#</span>
+              <span class="s-tag">C++</span>
             </div>
           </div>
           <div class="skill-category">
-            <div class="skill-cat-name">Backend &amp; DB</div>
+            <div class="skill-cat-name">Frontend</div>
+            <div class="skill-tags">
+              <span class="s-tag">React.js</span>
+              <span class="s-tag">HTML5</span>
+              <span class="s-tag">CSS3</span>
+              <span class="s-tag">Tailwind CSS</span>
+              <span class="s-tag">Bootstrap</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <div class="skill-cat-name">Backend &amp; APIs</div>
             <div class="skill-tags">
               <span class="s-tag">FastAPI</span>
-              <span class="s-tag">PostgreSQL</span>
               <span class="s-tag">REST APIs</span>
-              <span class="s-tag">Auth</span>
+              <span class="s-tag">JWT Authentication</span>
+              <span class="s-tag">ASP.NET (Basics)</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <div class="skill-cat-name">Databases &amp; Cloud</div>
+            <div class="skill-tags">
+              <span class="s-tag">PostgreSQL</span>
+              <span class="s-tag">Firebase</span>
+              <span class="s-tag">SQL Server</span>
+              <span class="s-tag">AWS S3</span>
             </div>
           </div>
           <div class="skill-category">
             <div class="skill-cat-name">AI / ML</div>
             <div class="skill-tags">
+              <span class="s-tag">Plagiarism Detection</span>
+              <span class="s-tag">AI-Content Analysis</span>
               <span class="s-tag">Scikit-learn</span>
-              <span class="s-tag">HuggingFace</span>
-              <span class="s-tag">Data Processing</span>
+              <span class="s-tag">Classification Models</span>
+              <span class="s-tag">Data Preprocessing</span>
             </div>
           </div>
           <div class="skill-category">
-            <div class="skill-cat-name">Languages</div>
+            <div class="skill-cat-name">Tools &amp; Deployment</div>
             <div class="skill-tags">
-              <span class="s-tag">Python</span>
-              <span class="s-tag">JavaScript</span>
-              <span class="s-tag">C++</span>
-              <span class="s-tag">Java</span>
-              <span class="s-tag">Flutter</span>
-              <span class="s-tag">SQL</span>
-            </div>
-          </div>
-          <div class="skill-category">
-            <div class="skill-cat-name">Tools &amp; Infra</div>
-            <div class="skill-tags">
-              <span class="s-tag">AWS S3</span>
-              <span class="s-tag">Firebase</span>
-              <span class="s-tag">Git / GitHub</span>
+              <span class="s-tag">Git &amp; GitHub</span>
+              <span class="s-tag">Postman</span>
+              <span class="s-tag">VS Code</span>
+              <span class="s-tag">SSMS</span>
+              <span class="s-tag">API Testing</span>
+              <span class="s-tag">Debugging</span>
+              <span class="s-tag">Vercel</span>
               <span class="s-tag">Render</span>
+              <span class="s-tag">Firebase Hosting</span>
+              <span class="s-tag">AWS S3</span>
             </div>
           </div>
         </div>
@@ -1441,64 +1608,79 @@
         <div>
           <span class="proj-num">01</span>
           <h3 class="proj-name">EduShield</h3>
-          <p class="proj-desc">My final year project — an AI-powered academic integrity platform. Detects plagiarism and
-            AI-generated content, with role-based access for students and faculty, AWS S3 file storage, and a scalable
-            FastAPI backend.</p>
+          <p class="proj-desc">AI-powered academic integrity platform that enables faculty to create classrooms, manage assignments, and evaluate student submissions through automated plagiarism detection and AI-generated text analysis. Features a secure role-based access control system and scalable document pipeline.</p>
           <div class="proj-tags">
-            <span class="proj-tag">React</span>
+            <span class="proj-tag">React.js</span>
             <span class="proj-tag">FastAPI</span>
             <span class="proj-tag">PostgreSQL</span>
             <span class="proj-tag">AWS S3</span>
-            <span class="proj-tag">HuggingFace</span>
             <span class="proj-tag">AI Detection</span>
           </div>
-          <a href="#" class="proj-link">View Project →</a>
+          <div style="margin-top:16px;">
+            <a href="https://github.com/sammmiksha" target="_blank" class="proj-link">GitHub Repo →</a>
+          </div>
         </div>
         <div class="proj-features">
-          <div class="proj-feat-title">Core Features</div>
-          <div class="proj-feat-item"><span class="feat-check">✦</span> AI plagiarism detection engine</div>
-          <div class="proj-feat-item"><span class="feat-check">✦</span> AI-generated content classifier</div>
-          <div class="proj-feat-item"><span class="feat-check">✦</span> Role-based auth (student/faculty)</div>
-          <div class="proj-feat-item"><span class="feat-check">✦</span> AWS S3 scalable file storage</div>
-          <div class="proj-feat-item"><span class="feat-check">✦</span> Section-wise assignment management</div>
+          <div class="proj-feat-title">Key Contributions</div>
+          <div class="proj-feat-item"><span class="feat-check">✦</span> Engineered automated document upload and processing pipelines</div>
+          <div class="proj-feat-item"><span class="feat-check">✦</span> Modelled PostgreSQL schema covering users and assignments</div>
+          <div class="proj-feat-item"><span class="feat-check">✦</span> Designed secure student/faculty role-based dashboards</div>
+          <div class="proj-feat-item"><span class="feat-check">✦</span> Integrated AWS S3 for secure cloud document storage</div>
         </div>
       </div>
 
       <!-- StockAI -->
       <div class="proj-card reveal" style="transition-delay:0.15s">
         <span class="proj-num">02</span>
-        <div class="proj-live-badge"><span
-            style="width:7px;height:7px;background:#7DCCA0;border-radius:50%;display:inline-block;"></span> Live</div>
+        <div class="proj-live-badge"><span style="width:7px;height:7px;background:#7DCCA0;border-radius:50%;display:inline-block;"></span> Live</div>
         <h3 class="proj-name">StockAI</h3>
-        <p class="proj-desc">Full-stack stock analysis platform with real-time market data and AI-driven trading
-          signals. Implements RSI, EMA, MACD, and volatility indicators. Built with robust retry and fallback logic for
-          high API reliability.</p>
+        <p class="proj-desc">Stock market analysis platform integrating third-party financial APIs for real-time market insights, charts, and technical indicators (RSI, EMA). Built with user authentication and data persistence.</p>
         <div class="proj-tags">
-          <span class="proj-tag">React</span>
-          <span class="proj-tag">Tailwind CSS</span>
+          <span class="proj-tag">React.js</span>
           <span class="proj-tag">FastAPI</span>
-          <span class="proj-tag">yfinance</span>
           <span class="proj-tag">Firebase</span>
-          <span class="proj-tag">Render</span>
+          <span class="proj-tag">yfinance</span>
         </div>
-        <a href="https://stock-analysis-2f871.web.app" target="_blank" class="proj-link">View Live Site →</a>
+        <div style="margin-top:20px; display:flex; gap:16px;">
+          <a href="https://stock-analysis-2f871.web.app" target="_blank" class="proj-link">Live Site →</a>
+          <a href="https://github.com/sammmiksha" target="_blank" class="proj-link">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- NoteBloom -->
+      <div class="proj-card reveal" style="transition-delay:0.2s">
+        <span class="proj-num">03</span>
+        <div class="proj-live-badge"><span style="width:7px;height:7px;background:#7DCCA0;border-radius:50%;display:inline-block;"></span> Live</div>
+        <h3 class="proj-name">NoteBloom</h3>
+        <p class="proj-desc">A browser-based customizable study notebook featuring multi-notebook management, persistent local storage, custom writing environment settings (fonts, paper styles, ink colors), and clean UI/UX with zero external dependencies.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">HTML5</span>
+          <span class="proj-tag">CSS3</span>
+          <span class="proj-tag">JavaScript</span>
+          <span class="proj-tag">Local Storage</span>
+        </div>
+        <div style="margin-top:20px; display:flex; gap:16px;">
+          <a href="https://sammmiksha.github.io/notebloom" target="_blank" class="proj-link">Live Site →</a>
+          <a href="https://github.com/sammmiksha" target="_blank" class="proj-link">GitHub →</a>
+        </div>
       </div>
 
       <!-- SevaSetu -->
-      <div class="proj-card reveal" style="transition-delay:0.2s">
-        <span class="proj-num">03</span>
-        <div class="proj-live-badge"><span
-            style="width:7px;height:7px;background:#7DCCA0;border-radius:50%;display:inline-block;"></span> Live</div>
+      <div class="proj-card reveal" style="transition-delay:0.25s">
+        <span class="proj-num">04</span>
+        <div class="proj-live-badge"><span style="width:7px;height:7px;background:#7DCCA0;border-radius:50%;display:inline-block;"></span> Live</div>
         <h3 class="proj-name">SevaSetu v2</h3>
-        <p class="proj-desc">A volunteer and help-matching platform connecting people who need support with those who
-          can provide it. Implemented authentication, user workflows, and a refined UI/UX — fully deployed.</p>
+        <p class="proj-desc">Volunteer and resource coordination platform connecting support seekers with local volunteers. Delivered as a complete product under Google Solution Challenge hackathon constraints.</p>
         <div class="proj-tags">
-          <span class="proj-tag">React</span>
+          <span class="proj-tag">React.js</span>
           <span class="proj-tag">Firebase</span>
-          <span class="proj-tag">Authentication</span>
+          <span class="proj-tag">Real-Time Sync</span>
           <span class="proj-tag">UX Design</span>
         </div>
-        <a href="https://seva-setu-9a8e3.web.app/" target="_blank" class="proj-link">View Live Site →</a>
+        <div style="margin-top:20px; display:flex; gap:16px;">
+          <a href="https://seva-setu-9a8e3.web.app/" target="_blank" class="proj-link">Live Site →</a>
+          <a href="https://github.com/sammmiksha" target="_blank" class="proj-link">GitHub →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -1511,14 +1693,14 @@
         <h2 class="sec-title">Always <em>learning</em> ✦</h2>
         <div style="margin-top:32px;">
           <div class="edu-card">
-            <div class="edu-badge">🎓 Currently Enrolled</div>
+            <div class="edu-badge">🎓 Current Degree</div>
             <div class="edu-deg">BSc in Information Technology</div>
-            <div class="edu-school">2023 – 2026 · Mumbai</div>
+            <div class="edu-school">Mumbai University · Expected April 2026</div>
             <div class="cgpa-row">
-              <span class="cgpa-big">9.2</span>
+              <span class="cgpa-big">9.15</span>
               <span class="cgpa-denom">/10</span>
             </div>
-            <div class="cgpa-lbl">CGPA · Semester 5 · Top performer ✦</div>
+            <div class="cgpa-lbl">Cumulative CGPI · Top Performer ✦<br>Sem 5 GPA: 9.2 | Sem 6 GPA: 9.8</div>
           </div>
         </div>
       </div>
@@ -1526,42 +1708,40 @@
       <div class="edu-right reveal" style="transition-delay:0.1s">
         <div class="edu-highlights">
           <div class="edu-hl">
-            <div class="edu-hl-icon ic-purple">🤖</div>
+            <div class="edu-hl-icon ic-purple">🏆</div>
             <div class="edu-hl-body">
-              <h4>Artificial Intelligence &amp; ML</h4>
-              <p>Hands-on model training, content analysis, and intrusion detection system design using CIC-IDS2017
-                dataset</p>
+              <h4>Hack@Skill — Google Solution Challenge</h4>
+              <p>Developed SevaSetu v2 as part of a two-member team delivering a full end-to-end volunteer coordination and resource management platform under hackathon constraints.</p>
             </div>
           </div>
           <div class="edu-hl">
-            <div class="edu-hl-icon ic-green">💻</div>
+            <div class="edu-hl-icon ic-indigo">🎓</div>
             <div class="edu-hl-body">
-              <h4>Full-Stack Web Development</h4>
-              <p>Production applications using React, FastAPI, PostgreSQL — deployed with Firebase &amp; Render</p>
+              <h4>CS50x: Introduction to Computer Science</h4>
+              <p>Harvard University — Solid foundation in computer science fundamentals including algorithms, data structures, software engineering, C, Python, SQL, and web development.</p>
             </div>
           </div>
           <div class="edu-hl">
-            <div class="edu-hl-icon ic-indigo">🔐</div>
+            <div class="edu-hl-icon ic-green">🤖</div>
             <div class="edu-hl-body">
-              <h4>Cybersecurity &amp; System Design</h4>
-              <p>Network anomaly detection, role-based auth systems, and secure backend architectures</p>
+              <h4>AI / ML &amp; NLP Integration</h4>
+              <p>Experience in plagiarism detection, AI-content analysis, model training with Scikit-learn, and data preprocessing.</p>
             </div>
           </div>
           <div class="edu-hl">
-            <div class="edu-hl-icon ic-purple">☁️</div>
+            <div class="edu-hl-icon ic-purple">💻</div>
             <div class="edu-hl-body">
-              <h4>Cloud Infrastructure</h4>
-              <p>AWS S3 integrations, Firebase deployment, Render hosting — real cloud workflows from semester 3</p>
+              <h4>Full-Stack &amp; Cloud Systems</h4>
+              <p>Developing scalable backends with FastAPI, robust RESTful APIs, PostgreSQL schema design, and AWS S3 cloud storage.</p>
             </div>
           </div>
         </div>
 
         <div class="ongoing-card" style="margin-top:24px;">
-          <div class="ongoing-label">🔬 Ongoing Project</div>
-          <div class="ongoing-name">Shield AI — Intrusion Detection System</div>
+          <div class="ongoing-label">🔬 Upskilling &amp; Focus</div>
+          <div class="ongoing-name">NLP Engineering &amp; Large Language Models (LLMs)</div>
           <div class="ongoing-desc">
-            Building an ML-based network intrusion detection system trained on the CIC-IDS2017 dataset, capable of
-            detecting network anomalies and DoS attacks in real-time across multiple model architectures.
+            Deepening knowledge in Natural Language Processing (NLP) engineering, Large Language Models (LLMs), and machine learning, with a focus on building intelligent, scalable AI applications.
           </div>
         </div>
       </div>
@@ -1574,9 +1754,12 @@
       <div class="reveal">
         <span class="sec-eyebrow">Contact</span>
         <h2 class="sec-title">Let's build<br><em>something great</em> ✦</h2>
-        <p style="font-size:15px; color:var(--ink-soft); line-height:1.8; margin-bottom:8px;">
+        <p style="font-size:15px; color:var(--ink-soft); line-height:1.8; margin-bottom:12px;">
           Open to internships, collaborations, freelance gigs, or just a good conversation about AI, systems, or tech.
           Drop me a message — I'd love to hear from you.
+        </p>
+        <p style="font-size:13px; color:var(--ink-soft); font-weight:700; margin-bottom:28px;">
+          🗣️ Languages: English · Hindi · Marathi
         </p>
         <div class="contact-links">
           <a href="mailto:patilsamiksha179@gmail.com" class="c-link">
@@ -1586,14 +1769,6 @@
           <a href="https://www.linkedin.com/in/sammmikshapatil" target="_blank" class="c-link">
             <div class="c-icon">💼</div>
             linkedin.com/in/sammmikshapatil
-          </a>
-          <a href="https://stock-analysis-2f871.web.app" target="_blank" class="c-link">
-            <div class="c-icon">📈</div>
-            StockAI — Live Project
-          </a>
-          <a href="https://seva-setu-9a8e3.web.app/" target="_blank" class="c-link">
-            <div class="c-icon">🤝</div>
-            SevaSetu v2 — Live Project
           </a>
           <a href="https://github.com/sammmiksha" target="_blank" class="c-link">
             <div class="c-icon">🐙</div>
