@@ -711,7 +711,7 @@
 
     <!-- Notebook Index Divider Tabs -->
     <div
-      class="flex flex-wrap md:flex-nowrap justify-start md:space-x-1 border-b border-dingley/30 pt-4 px-4 select-none">
+      class="flex flex-wrap md:flex-nowrap justify-start md:space-x-1 border-b border-dingley/30 pt-4 px-4 select-none overflow-x-auto">
       <button onclick="selectProject('edushield')" id="tab-proj-edushield"
         class="px-6 py-2 bg-paper-dark border-t border-x border-dingley/20 rounded-t-md text-xs sm:text-sm font-semibold tracking-wide text-kombu-green hover:bg-paper-bg/40 transform translate-y-1 transition-all duration-200 outline-none active-tab mr-1 md:mr-0">
         EduShield
@@ -733,8 +733,20 @@
         NoteBloom
       </button>
       <button onclick="selectProject('sevasetu')" id="tab-proj-sevasetu"
-        class="px-6 py-2 bg-paper-dark border-t border-x border-dingley/20 rounded-t-md text-xs sm:text-sm font-semibold tracking-wide text-kombu-green hover:bg-paper-bg/40 transform translate-y-1 transition-all duration-200 outline-none">
+        class="px-6 py-2 bg-paper-dark border-t border-x border-dingley/20 rounded-t-md text-xs sm:text-sm font-semibold tracking-wide text-kombu-green hover:bg-paper-bg/40 transform translate-y-1 transition-all duration-200 outline-none mr-1 md:mr-0">
         SevaSetu
+      </button>
+      <button onclick="selectProject('kitchenoptima')" id="tab-proj-kitchenoptima"
+        class="px-6 py-2 bg-paper-dark border-t border-x border-dingley/20 rounded-t-md text-xs sm:text-sm font-semibold tracking-wide text-kombu-green hover:bg-paper-bg/40 transform translate-y-1 transition-all duration-200 outline-none mr-1 md:mr-0">
+        KitchenOptima
+      </button>
+      <button onclick="selectProject('auditplatform')" id="tab-proj-auditplatform"
+        class="px-6 py-2 bg-paper-dark border-t border-x border-dingley/20 rounded-t-md text-xs sm:text-sm font-semibold tracking-wide text-kombu-green hover:bg-paper-bg/40 transform translate-y-1 transition-all duration-200 outline-none mr-1 md:mr-0">
+        Website Audit
+      </button>
+      <button onclick="selectProject('desktoppet')" id="tab-proj-desktoppet"
+        class="px-6 py-2 bg-paper-dark border-t border-x border-dingley/20 rounded-t-md text-xs sm:text-sm font-semibold tracking-wide text-kombu-green hover:bg-paper-bg/40 transform translate-y-1 transition-all duration-200 outline-none">
+        Desktop Pet
       </button>
     </div>
 
@@ -763,7 +775,7 @@
           </div>
           <div
             class="text-xs text-dingley font-semibold tracking-wide uppercase select-none border-t border-dingley/10 pt-2 flex justify-between">
-            <span>Page 16</span>
+            <span>Page 36</span>
             <span>Lessons Learned</span>
           </div>
         </div>
@@ -1670,11 +1682,106 @@
           "Configured fine-grained security rules preventing personal data leakage.",
           "Built full coordinate-based sorting in a two-member hackathon timeline."
         ]
+      },
+      kitchenoptima: {
+        title: "KitchenOptima",
+        tagline: "Restaurant Operations & Cost Optimization",
+        problem: "Restaurant owners need practical, easy-to-understand ways to optimize operations and costs, not a technical demo.",
+        solution: "Pivoting a multi-industry optimization platform into a restaurant-focused product with an owner dashboard, guided onboarding, and humanized recommendations.",
+        impact: "Aims to make cost optimization usable for real restaurant owners, with manual overrides and confidence tracking they can trust.",
+        builtWith: "FastAPI + OR-Tools + ML Forecasting",
+        featuresCount: "In Progress",
+        roles: ["Backend Engineering", "Optimization Modeling", "Product Design"],
+        techStack: ["FastAPI", "OR-Tools MILP", "ML Demand Forecasting", "JavaScript", "HTML/CSS"],
+        features: [
+          "MILP-based cost optimization engine",
+          "ML demand forecasting",
+          "Industry plugin system (Restaurant, Retail)",
+          "'This Week' owner dashboard",
+          "Guided onboarding wizard",
+          "Manual overrides and track-record confidence"
+        ],
+        github: "https://github.com/sammmiksha/cost-optimization-platform",
+        demo: "#",
+        architecture: [
+          "Static Frontend (index.html + app.js)",
+          "FastAPI Backend",
+          "Industry Plugins",
+          "Demand Forecasting Model",
+          "OR-Tools MILP Solver"
+        ],
+        lessons: [
+          "Repositioning a general platform into a focused niche product.",
+          "Turning solver output into humanized, actionable recommendations.",
+          "Designing onboarding and overrides so non-technical owners stay in control."
+        ]
+      },
+      auditplatform: {
+        title: "Website Audit Platform",
+        tagline: "Automated Website Auditing Tool",
+        problem: "Checking a website for issues by hand is slow and inconsistent.",
+        solution: "Built an audit tool with a React frontend and FastAPI backend that crawls sites with BeautifulSoup4 and Playwright and stores results in SQLite.",
+        impact: "Gives a repeatable way to crawl and audit a site from a single interface.",
+        builtWith: "React + FastAPI + SQLite",
+        featuresCount: "5+",
+        roles: ["Backend Engineering", "Web Crawling", "Documentation"],
+        techStack: ["React.js", "FastAPI", "BeautifulSoup4", "Playwright", "SQLite"],
+        features: [
+          "Static page crawling with BeautifulSoup4",
+          "Browser-based crawling with Playwright",
+          "FastAPI audit endpoints",
+          "SQLite result storage"
+        ],
+        github: "https://github.com/sammmiksha",
+        demo: "#",
+        architecture: [
+          "React Frontend",
+          "FastAPI Backend",
+          "Crawling Layer (BeautifulSoup4 + Playwright)",
+          "SQLite Database"
+        ],
+        lessons: [
+          "Combining lightweight parsing with headless-browser crawling.",
+          "Structuring a crawler behind a clean API.",
+          "Documenting architecture clearly in the README."
+        ]
+      },
+      desktoppet: {
+        title: "Desktop Pet",
+        tagline: "Animated Desktop Companion",
+        problem: "Desktops are static and impersonal; a small companion makes them feel more alive.",
+        solution: "Built an Electron desktop app featuring Buddy, an animated virtual dog that lives on your screen.",
+        impact: "A playful desktop companion with multiple animation states, refined through a structured redesign of proportions and animations.",
+        builtWith: "Electron + JavaScript",
+        featuresCount: "4+",
+        roles: ["Desktop App Development", "Animation Design"],
+        techStack: ["Electron", "JavaScript", "HTML/CSS"],
+        features: [
+          "Animated virtual dog named Buddy",
+          "Multiple animation states",
+          "Always-on-desktop companion window",
+          "Redesign pass for proportions and animations"
+        ],
+        github: "https://github.com/sammmiksha/desktop-pet",
+        demo: "#",
+        architecture: [
+          "Electron Main Process",
+          "Renderer Window",
+          "Animation State Manager",
+          "Buddy Sprite Assets"
+        ],
+        lessons: [
+          "Building a desktop app with Electron.",
+          "Managing character animation states.",
+          "Writing a structured redesign brief to fix proportions."
+        ]
       }
     };
 
     let isTransitioning = false;
-    let currentSpread = 0; // 0 to 12 spreads.
+    const projectOrder = ['edushield','postmortem','filmfare','stockai','notebloom','sevasetu','kitchenoptima','auditplatform','desktoppet'];
+    const TOTAL_SPREADS = projectOrder.length * 2;
+    let currentSpread = 0;
  
     // ── Generate the book spreads dynamically on load ──
     function initBook() {
@@ -1695,48 +1802,20 @@
         </div>
       `;
  
-      // 2. Generate Right Base Content (Page 24: SevaSetu Lessons)
-      document.getElementById('right-base-content').innerHTML = renderLessonsPage(projects.sevasetu, 24);
- 
-      // 3. Generate Sheets 1 to 12
-      let sheetsHtml = '';
- 
-      // Sheet 1: Front = Index Page, Back = EduShield Page 1 (Story)
-      sheetsHtml += renderSheet(1, renderIndexPage(), renderStoryPage(projects.edushield, 1));
- 
-      // Sheet 2: Front = EduShield Page 2 (Details), Back = EduShield Page 3 (Arch)
-      sheetsHtml += renderSheet(2, renderDetailsPage(projects.edushield, 2, 2), renderArchPage(projects.edushield, 3, 1));
- 
-      // Sheet 3: Front = EduShield Page 4 (Lessons), Back = PostMortem-AI Page 5 (Story)
-      sheetsHtml += renderSheet(3, renderLessonsPage(projects.edushield, 4), renderStoryPage(projects.postmortem, 5));
- 
-      // Sheet 4: Front = PostMortem-AI Page 6 (Details), Back = PostMortem-AI Page 7 (Arch)
-      sheetsHtml += renderSheet(4, renderDetailsPage(projects.postmortem, 6, 4), renderArchPage(projects.postmortem, 7, 3));
- 
-      // Sheet 5: Front = PostMortem-AI Page 8 (Lessons), Back = FilmFare Page 9 (Story)
-      sheetsHtml += renderSheet(5, renderLessonsPage(projects.postmortem, 8), renderStoryPage(projects.filmfare, 9));
- 
-      // Sheet 6: Front = FilmFare Page 10 (Details), Back = FilmFare Page 11 (Arch)
-      sheetsHtml += renderSheet(6, renderDetailsPage(projects.filmfare, 10, 6), renderArchPage(projects.filmfare, 11, 5));
- 
-      // Sheet 7: Front = FilmFare Page 12 (Lessons), Back = Stock Analysis Page 13 (Story)
-      sheetsHtml += renderSheet(7, renderLessonsPage(projects.filmfare, 12), renderStoryPage(projects.stockai, 13));
- 
-      // Sheet 8: Front = Stock Analysis Page 14 (Details), Back = Stock Analysis Page 15 (Arch)
-      sheetsHtml += renderSheet(8, renderDetailsPage(projects.stockai, 14, 8), renderArchPage(projects.stockai, 15, 7));
- 
-      // Sheet 9: Front = Stock Analysis Page 16 (Lessons), Back = NoteBloom Page 17 (Story)
-      sheetsHtml += renderSheet(9, renderLessonsPage(projects.stockai, 16), renderStoryPage(projects.notebloom, 17));
- 
-      // Sheet 10: Front = NoteBloom Page 18 (Details), Back = NoteBloom Page 19 (Arch)
-      sheetsHtml += renderSheet(10, renderDetailsPage(projects.notebloom, 18, 10), renderArchPage(projects.notebloom, 19, 9));
- 
-      // Sheet 11: Front = NoteBloom Page 20 (Lessons), Back = SevaSetu Page 21 (Story)
-      sheetsHtml += renderSheet(11, renderLessonsPage(projects.notebloom, 20), renderStoryPage(projects.sevasetu, 21));
- 
-      // Sheet 12: Front = SevaSetu Page 22 (Details), Back = SevaSetu Page 23 (Arch)
-      sheetsHtml += renderSheet(12, renderDetailsPage(projects.sevasetu, 22, 12), renderArchPage(projects.sevasetu, 23, 11));
- 
+      // 2. Right base = last project's lessons page
+      const n = projectOrder.length;
+      document.getElementById('right-base-content').innerHTML =
+        renderLessonsPage(projects[projectOrder[n - 1]], n * 4);
+
+      // 3. Generate all sheets
+      let sheetsHtml = renderSheet(1, renderIndexPage(), renderStoryPage(projects[projectOrder[0]], 1));
+      for (let p = 0; p < n; p++) {
+        const d = projects[projectOrder[p]];
+        sheetsHtml += renderSheet(2 * p + 2, renderDetailsPage(d, 4 * p + 2, 2 * p + 2), renderArchPage(d, 4 * p + 3, 2 * p + 1));
+        if (p < n - 1) {
+          sheetsHtml += renderSheet(2 * p + 3, renderLessonsPage(d, 4 * p + 4), renderStoryPage(projects[projectOrder[p + 1]], 4 * p + 5));
+        }
+      }
       document.getElementById('book-sheets-container').innerHTML = sheetsHtml;
  
       updateTabHighlights();
@@ -1782,45 +1861,28 @@
     }
 
     function renderIndexPage() {
+      const indexItems = projectOrder.map((key, index) => {
+        const startPage = index * 4 + 1;
+        const endPage = startPage + 3;
+        return `
+          <button onclick="goToSpread(${index * 2 + 1})" class="w-full flex items-center justify-between text-left border-b border-dingley/20 pb-1.5 hover:text-pale-copper transition-colors duration-150">
+            <span class="font-serif font-bold text-xs">${index + 1}. ${projects[key].title}</span>
+            <span class="text-[10px] text-kombu-green/60">Page ${startPage} - ${endPage}</span>
+          </button>
+        `;
+      }).join('');
+
       return `
         <div class="space-y-6 flex flex-col justify-between h-full select-text">
           <div class="space-y-4">
             <span class="font-serif text-xs text-pale-copper tracking-wider font-semibold uppercase">Directory</span>
             <h3 class="font-serif text-3xl font-bold text-pine-tree leading-tight">Project Index</h3>
-            
+
             <div class="space-y-1.5 pt-1 overflow-y-auto max-h-[300px] pr-1">
-              <button onclick="goToSpread(1)" class="w-full flex items-center justify-between text-left border-b border-dingley/20 pb-1.5 hover:text-pale-copper transition-colors duration-150">
-                <span class="font-serif font-bold text-xs">1. EduShield</span>
-                <span class="text-[10px] text-kombu-green/60">Page 1 - 4</span>
-              </button>
-              
-              <button onclick="goToSpread(3)" class="w-full flex items-center justify-between text-left border-b border-dingley/20 pb-1.5 hover:text-pale-copper transition-colors duration-150">
-                <span class="font-serif font-bold text-xs">2. PostMortem-AI</span>
-                <span class="text-[10px] text-kombu-green/60">Page 5 - 8</span>
-              </button>
-              
-              <button onclick="goToSpread(5)" class="w-full flex items-center justify-between text-left border-b border-dingley/20 pb-1.5 hover:text-pale-copper transition-colors duration-150">
-                <span class="font-serif font-bold text-xs">3. FilmFare</span>
-                <span class="text-[10px] text-kombu-green/60">Page 9 - 12</span>
-              </button>
-              
-              <button onclick="goToSpread(7)" class="w-full flex items-center justify-between text-left border-b border-dingley/20 pb-1.5 hover:text-pale-copper transition-colors duration-150">
-                <span class="font-serif font-bold text-xs">4. Stock Analysis</span>
-                <span class="text-[10px] text-kombu-green/60">Page 13 - 16</span>
-              </button>
-              
-              <button onclick="goToSpread(9)" class="w-full flex items-center justify-between text-left border-b border-dingley/20 pb-1.5 hover:text-pale-copper transition-colors duration-150">
-                <span class="font-serif font-bold text-xs">5. NoteBloom</span>
-                <span class="text-[10px] text-kombu-green/60">Page 17 - 20</span>
-              </button>
-              
-              <button onclick="goToSpread(11)" class="w-full flex items-center justify-between text-left border-b border-dingley/20 pb-1.5 hover:text-pale-copper transition-colors duration-150">
-                <span class="font-serif font-bold text-xs">6. SevaSetu</span>
-                <span class="text-[10px] text-kombu-green/60">Page 21 - 24</span>
-              </button>
+              ${indexItems}
             </div>
           </div>
-          
+
           <div class="pt-2 flex border-t border-dingley/10">
             <button onclick="goToSpread(1)" class="px-6 py-2 bg-pine-tree text-paper-bg rounded font-semibold text-xs hover:bg-kombu-green transition-all shadow-sm ml-auto">Browse Journal &rarr;</button>
           </div>
@@ -1926,18 +1988,15 @@
 
     // Dynamic transition selector
     function selectProject(key) {
-      let targetSpread = 1;
-      if (key === 'edushield') targetSpread = 1;
-      else if (key === 'postmortem') targetSpread = 3;
-      else if (key === 'filmfare') targetSpread = 5;
-      else if (key === 'stockai') targetSpread = 7;
-      else if (key === 'notebloom') targetSpread = 9;
-      else if (key === 'sevasetu') targetSpread = 11;
+      const projectIndex = projectOrder.indexOf(key);
+      if (projectIndex === -1) return;
+
+      let targetSpread = projectIndex * 2 + 1;
 
       if (window.innerWidth >= 768) {
         // Turn pages instantly to avoid weird reverse cascade flips when clicking tabs
         currentSpread = targetSpread;
-        for (let i = 1; i <= 12; i++) {
+        for (let i = 1; i <= TOTAL_SPREADS; i++) {
           const sheet = document.getElementById(`sheet-${i}`);
           if (sheet) {
             sheet.style.transition = 'none';
@@ -1950,8 +2009,7 @@
       } else {
         // Mobile direct toggle
         currentSpread = targetSpread;
-        // Shift sheets
-        for (let i = 1; i <= 12; i++) {
+        for (let i = 1; i <= TOTAL_SPREADS; i++) {
           flipSheet(i, i <= targetSpread);
         }
         updateTabHighlights();
@@ -2003,15 +2061,8 @@
 
     // Sync highlights on folder tabs
     function updateTabHighlights() {
-      const tabKeys = ['edushield', 'postmortem', 'filmfare', 'stockai', 'notebloom', 'sevasetu'];
-      let activeKey = null;
-
-      if (currentSpread >= 1 && currentSpread <= 2) activeKey = 'edushield';
-      else if (currentSpread >= 3 && currentSpread <= 4) activeKey = 'postmortem';
-      else if (currentSpread >= 5 && currentSpread <= 6) activeKey = 'filmfare';
-      else if (currentSpread >= 7 && currentSpread <= 8) activeKey = 'stockai';
-      else if (currentSpread >= 9 && currentSpread <= 10) activeKey = 'notebloom';
-      else if (currentSpread >= 11 && currentSpread <= 12) activeKey = 'sevasetu';
+      const tabKeys = projectOrder;
+      let activeKey = currentSpread >= 1 ? projectOrder[Math.floor((currentSpread - 1) / 2)] : null;
 
       tabKeys.forEach(k => {
         const tab = document.getElementById(`tab-proj-${k}`);
@@ -2105,7 +2156,7 @@
 
     function nextPage() {
       if (isTransitioning) return;
-      if (currentSpread < 12) {
+      if (currentSpread < TOTAL_SPREADS) {
         goToSpread(currentSpread + 1);
       }
     }
